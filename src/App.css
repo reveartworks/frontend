@@ -1,0 +1,214 @@
+/* @import url("https://fonts.googleapis.com/css?family=Goudy Bookletter 1911") */
+HTML {
+  scroll-behavior: smooth;
+}
+
+.swiper-pagination-bullet {
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  opacity: 1 !important;
+}
+.swiper-pagination {
+  padding-bottom: 8%;
+}
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+  border: 1px solid white !important;
+  opacity: 1 !important;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header {
+  /* content: url("./Images/_NP_0001.JPG"); */
+  background-color: #cccccc;
+  width: 100%;
+}
+
+/* .slide1 {
+  content: url('./Images/_NP_0004.JPG'); 
+  background-color: #cccccc;
+  width: 100%;
+} */
+
+.text17 {
+  font-size: 18px;
+  line-height: 1.7em;
+  /* font-family: "Goudy bookletter 1911" !important; */
+  font-family: serif;
+}
+.overlay-text {
+  font-family: fantasy;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.border {
+  border-radius: 5%;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 10px 10px 10px;
+  border-radius: 10%;
+  text-align: left;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.social {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.social li {
+  float: left;
+  margin: 17px 16px 15px 23px;
+}
+
+.footer {
+  background: seagreen;
+  color: white;
+}
+
+.contact {
+  color: white !important;
+}
+.contact:hover {
+  background-color: white;
+  color: #074036;
+}
+
+.paper {
+  padding: 10px 10px 10px 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* .tool {
+  content: url("./Images/Header.png");
+  background-color: #cccccc;
+  height: 5%;
+} */
+
+.css-34he1w-MuiRating-decimal {
+  position: relative;
+  color: rgba(31, 165, 141, 1);
+}
+.right {
+  float: right;
+}
+
+.margin-left {
+  margin-left: 10px;
+  cursor: pointer !important;
+}
+
+.margintop {
+  margin-top: 50px !important;
+}
+
+.art {
+  text-align: center;
+  display: inline;
+}
+
+.contactus {
+  background: seagreen !important;
+  border-radius: 37px !important;
+}
+
+.right-align {
+  right: 10px !important;
+  position: absolute;
+}
+
+.close {
+  cursor: pointer;
+  padding: 10px 11px 11px 12px;
+}
+
+.nft {
+  cursor: pointer;
+}
+
+.nft:hover {
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  font-weight: bold;
+}
+
+.edit {
+  float: right !important;
+}
+/* .header {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  margin-top: 1%;
+  margin-left: -8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+} */
+@media (max-width: 400px) {
+  /* .header {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    margin-top: 0px;
+    margin-left: -8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  } */
+}
