@@ -5,7 +5,8 @@ import axios from "axios";
 // Create an instance of axios with default settings
 const axiosInstance = axios.create({
   // baseURL: "http://abduls-macbook-pro.local:5001", // Replace with your API's base URL
-  baseURL: "http://0.0.0.0:5001", // Replace with your API's base URL
+  // baseURL: "http://0.0.0.0:5001", // Replace with your API's base URL
+  baseURL: "https://api.reveartworks.com", // Replace with your API's base URL
   // baseURL: "https://5536-2601-647-4502-15a0-e0b6-b51f-f20e-b788.ngrok-free.app", // Replace with your API's base URL
   timeout: 10000, // Timeout after 10 seconds
   headers: {
