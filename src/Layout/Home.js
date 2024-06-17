@@ -167,7 +167,7 @@ export function Home(props) {
                       width: "100%",
                       backgroundImage: `url(${corouselImage})`,
                       //   backgroundColor: "#ccccc",
-                      backgroundSize: "cover",
+                      backgroundSize: "auto 100%",
                       backgroundPosition: "center",
                       height: "100vh",
                     }}

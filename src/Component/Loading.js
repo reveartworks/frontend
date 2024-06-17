@@ -3,12 +3,12 @@ import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Loading(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <div
       style={{
         // position: "absolute",
-        zIndex: "5",
+        zIndex: props.uploadPage ? "" : "5",
         // marginTop: props.isMoblile ? "" : "45vh",
         // marginLeft: props.isMoblile ? "40vw" : "45vw",
         width: "100%",
@@ -16,10 +16,10 @@ export default function Loading(props) {
     >
       <div
         style={{
-          width: props.isMobile ? "20%" : "3%",
+          width: props.uploadPage ? "20%" : props.isMobile ? "20%" : "3%",
           margin: "auto",
-          marginTop: "20%",
-          marginBottom: "20%",
+          marginTop: props.uploadPage ? "" : "20%",
+          marginBottom: props.uploadPage ? "" : "20%",
         }}
       >
         <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">

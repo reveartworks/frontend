@@ -184,7 +184,11 @@ export function Footer(props) {
                   width: "100%",
                   display: "flex",
                   flexDirection: props.isMobile ? "column" : "row",
-                  maxHeight: props.isMobileLandscape ? "200px" : "",
+                  maxHeight: props.isMobile
+                    ? "500px"
+                    : props.isMobileLandscape
+                    ? "200px"
+                    : "",
                   overflow: "scroll",
                 }}
               >

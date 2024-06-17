@@ -20,6 +20,9 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { apiRequest } from "../Util/axiosInstance";
 import Loading from "../Component/Loading";
+import AspectRatioIcon from "@mui/icons-material/AspectRatio";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 
 const modalStyle = {
   position: "absolute",
@@ -85,6 +88,7 @@ export function ViewArt(props) {
   const [comments, setComments] = useState("");
   const [contacted, setContacted] = useState(false);
   const [contactError, setContactError] = useState(false);
+  const [expandImage, setExpandImage] = useState(false);
 
   function alerter(field) {
     alert("Please provide your " + field);
@@ -246,12 +250,63 @@ export function ViewArt(props) {
                         : "550px",
                       backgroundImage: `url(${activeImage})`,
                       borderRadius: "10px",
-                      backgroundSize: "cover",
+                      backgroundSize: expandImage ? "contain" : "cover",
+                      backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
                     }}
                   >
                     {/* <img src={`data:image/png;base64,${image}`} /> */}&nbsp;
+                    {/* {expandImage ? (
+                      <p>collapse</p>
+                    ) : (
+                      <AspectRatioIcon style={{ color: "gray", right: "0" }} />
+                    )} */}
                   </div>
+                  {expandImage ? (
+                    <CloseFullscreenIcon
+                      style={{
+                        color: "white",
+                        margin: "auto",
+                        marginTop: "10px",
+                        // marginTop: props.isMobile
+                        //   ? "95%"
+                        //   : props.isMobileLandscape
+                        //   ? "90%"
+                        //   : "85%",
+                        // marginLeft: "85%",
+                        padding: "15px",
+                        borderRadius: "50%",
+                        background: "rgba(137,241,222,1)",
+                      }}
+                      onClick={(e) => {
+                        setExpandImage(false);
+                      }}
+                    />
+                  ) : (
+                    <OpenInFullIcon
+                      style={{
+                        color: "white",
+                        margin: "auto",
+                        marginTop: "10px",
+                        // marginTop: props.isMobile
+                        //   ? "75%"
+                        //   : props.isMobileLandscape
+                        //   ? "90%"
+                        //   : "85%",
+                        // marginLeft: props.isMobile
+                        //   ? "80%"
+                        //   : props.isMobileLandscape
+                        //   ? "85"
+                        //   : "85%",
+                        padding: "15px",
+                        borderRadius: "50%",
+                        background: "rgba(137,241,222,1)",
+                      }}
+                      onClick={(e) => {
+                        setExpandImage(true);
+                      }}
+                    />
+                  )}
                   <div
                     style={{
                       display: "flex",

@@ -20,6 +20,9 @@ import { Header } from "../../Component/Header";
 import { apiRequest } from "../../Util/axiosInstance";
 import { PropaneSharp } from "@mui/icons-material";
 import Loading from "../../Component/Loading";
+import compress from "compress-base64";
+import imageCompression from "browser-image-compression";
+
 export function UploadArt(props) {
   //   console.log("upload props");
   //   console.log(props);
@@ -36,13 +39,15 @@ export function UploadArt(props) {
   const [image3, setImage3] = useState();
   const [image4, setImage4] = useState();
   const [image5, setImage5] = useState();
-  //   const [image1, setImage1] = useState();
+
+  const [updateArtwork, setUpdateArtwork] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
   const [active, setActive] = useState(true);
   const [artworkName, setArtworkName] = useState("");
   const [rating, setRating] = useState();
-  //   const [firstName, setFirstName] = useState("");
-  //   const [lastName, setLastName] = useState("");
+
   const [description, setDescription] = useState("");
   const [inCorousel, setInCorousel] = useState(true);
   const [inHomeGrid, setInHomeGrid] = useState(true);
@@ -96,6 +101,7 @@ export function UploadArt(props) {
     // console.log(data);
 
     try {
+      setUploading(true);
       const result = await apiRequest("POST", "/add", data); // Replace with your API endpoint
       // setData(result);
       // console.log();
@@ -106,7 +112,7 @@ export function UploadArt(props) {
       //   console.error("Failed to fetch data:", error);
       alert("Artwork Upload Failed, Please try again later.");
     } finally {
-      // setLoading(false);
+      setUploading(false);
       // alert("uploaded ")
     }
   }
@@ -150,6 +156,7 @@ export function UploadArt(props) {
     // console.log(data);
 
     try {
+      setUploading(true);
       const result = await apiRequest("PUT", "/document/" + imageId, data); // Replace with your API endpoint
       // setData(result);
       // console.log();
@@ -162,11 +169,10 @@ export function UploadArt(props) {
     } finally {
       // setLoading(false);
       // alert("uploaded ")
+      setUploading(false);
     }
   }
 
-  const [updateArtwork, setUpdateArtwork] = useState(false);
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       if (imageId != "new") {
@@ -185,7 +191,7 @@ export function UploadArt(props) {
           setImage3(JSON.parse(result.image3).image);
           setImage4(JSON.parse(result.image4).image);
           setImage5(JSON.parse(result.image5).image);
-          console.log(result.image1);
+          // console.log(result.image1);
           setUpdateArtwork(true);
           setImage(JSON.parse(result.image1).image);
           setLoading(false);
@@ -202,10 +208,11 @@ export function UploadArt(props) {
     fetchData();
   }, [imageId]);
 
-  function handleFileChange(event, index) {
+  async function handleFileChange(event, index) {
     // console.log(index);
+    setUploading(true);
     const file = event.target.files[0];
-
+    // console.log(file);
     if (file) {
       // Ensure the selected file is an image
       if (!file.type.startsWith("image/")) {
@@ -214,21 +221,49 @@ export function UploadArt(props) {
         return;
       }
 
+      const imageFile = event.target.files[0];
+      console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+      console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+
+      try {
+        const compressedFile = await imageCompression(imageFile, options);
+        // console.log(
+        //   "compressedFile instanceof Blob",
+        //   compressedFile instanceof Blob
+        // ); // true
+        // console.log(
+        //   `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
+        // ); // smaller than maxSizeMB
+
+        // console.log(compressedFile); // write your own logic
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (index == 1) setImage1(reader.result); // Set the base64 string to the state
+          if (index == 2) setImage2(reader.result); // Set the base64 string to the state
+          if (index == 3) setImage3(reader.result); // Set the base64 string to the state
+          if (index == 4) setImage4(reader.result); // Set the base64 string to the state
+          if (index == 5) setImage5(reader.result); // Set the base64 string to the state
+          setUploading(false);
+        };
+        reader.onerror = () => {
+          //   setError("Failed to read file");
+        };
+        reader.readAsDataURL(compressedFile); // Read the file as a data URL
+        // console.log(image1);
+      } catch (error) {
+        console.log(error);
+        setUploading(false);
+      }
+
       // setError(null); // Reset any previous error
 
       // Convert the image file to a base64 string
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (index == 1) setImage1(reader.result); // Set the base64 string to the state
-        if (index == 2) setImage2(reader.result); // Set the base64 string to the state
-        if (index == 3) setImage3(reader.result); // Set the base64 string to the state
-        if (index == 4) setImage4(reader.result); // Set the base64 string to the state
-        if (index == 5) setImage5(reader.result); // Set the base64 string to the state
-      };
-      reader.onerror = () => {
-        //   setError("Failed to read file");
-      };
-      reader.readAsDataURL(file); // Read the file as a data URL
     }
   }
 
@@ -354,7 +389,8 @@ export function UploadArt(props) {
                     backgroundImage: image1
                       ? `url(${image1})`
                       : `url(${uploadImageIcon})`,
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
                     borderRadius: "20px",
                   }}
@@ -396,7 +432,8 @@ export function UploadArt(props) {
                       backgroundImage: image2
                         ? `url(${image2})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "cover",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                     }}
                     onClick={(e) => {
@@ -424,7 +461,8 @@ export function UploadArt(props) {
                       backgroundImage: image3
                         ? `url(${image3})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "cover",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                     }}
                     onClick={(e) => {
@@ -452,7 +490,8 @@ export function UploadArt(props) {
                       backgroundImage: image4
                         ? `url(${image4})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "cover",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                     }}
                     onClick={(e) => {
@@ -479,7 +518,8 @@ export function UploadArt(props) {
                       backgroundImage: image5
                         ? `url(${image5})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "cover",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                       //   marginRight: "5%",
                     }}
@@ -667,30 +707,45 @@ export function UploadArt(props) {
                   <br />
                   {!updateArtwork ? (
                     <FormControl required fullWidth>
-                      <Button
-                        variant="contained"
-                        onClick={(e) => {
-                          handleUpload();
-                        }}
-                        color="primary"
-                      >
-                        Upload Artwork
-                      </Button>
+                      {uploading ? (
+                        <Loading
+                          isMobile={props.isMobile}
+                          isMobileLandscape={props.isMobileLandscape}
+                        />
+                      ) : (
+                        <Button
+                          variant="contained"
+                          onClick={(e) => {
+                            handleUpload();
+                          }}
+                          color="primary"
+                        >
+                          Upload Artwork
+                        </Button>
+                      )}
                       <br></br>
                       <br></br>
                       <br></br>
                     </FormControl>
                   ) : (
                     <FormControl required fullWidth>
-                      <Button
-                        variant="contained"
-                        onClick={(e) => {
-                          handleUpdate();
-                        }}
-                        color="primary"
-                      >
-                        Update Artwork
-                      </Button>
+                      {uploading ? (
+                        <Loading
+                          uploadPage={true}
+                          // isMobile={props.isMobile}
+                          // isMobileLandscape={props.isMobileLandscape}
+                        />
+                      ) : (
+                        <Button
+                          variant="contained"
+                          onClick={(e) => {
+                            handleUpdate();
+                          }}
+                          color="primary"
+                        >
+                          Update Artwork
+                        </Button>
+                      )}
                       <br></br>
                       <br></br>
                       <br></br>

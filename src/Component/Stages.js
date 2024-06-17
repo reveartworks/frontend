@@ -28,7 +28,7 @@ export default function Stages(props) {
         color="text.primary"
         style={{ textDecoration: "none", color: "rgba(31, 165, 141, 1)" }}
       >
-        Artwork
+        Artworks
       </Typography>,
     ];
   } else {
@@ -49,7 +49,7 @@ export default function Stages(props) {
         style={{ textDecoration: "none" }}
         // onClick={handleClick}
       >
-        Artwork
+        Artworks
       </Link>,
       <Typography
         key="3"

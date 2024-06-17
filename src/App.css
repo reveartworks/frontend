@@ -142,7 +142,7 @@ HTML {
 
 .css-34he1w-MuiRating-decimal {
   position: relative;
-  color: rgba(31, 165, 141, 1);
+  color: rgba(31, 165, 141, 1) !important;
 }
 .right {
   float: right;
