@@ -98,7 +98,7 @@ export function Home(props) {
             "/" +
             sessionStorage.getItem("artSessionId")
         ); // Replace with your API endpoint
-        console.log(metricsResult);
+        // console.log(metricsResult);
 
         const result = await apiRequest("GET", "/corouselDocuments"); // Replace with your API endpoint
         // console.log(result);
@@ -134,6 +134,7 @@ export function Home(props) {
     fetchData();
   }, [image]);
 
+  const [swiper, setSwiper] = useState(null);
   return (
     <div>
       {/* <ToolBar /> */}
@@ -157,6 +158,7 @@ export function Home(props) {
             //   pagination={true}
             modules={[Pagination]}
             className="mySwiper"
+            onSwiper={setSwiper}
           >
             {corouselImages.map((corouselImage) => {
               return (
@@ -244,6 +246,10 @@ export function Home(props) {
                         borderRadius: "50%",
                         backgroundColor:
                           item == activeSlide ? "white" : "transparent",
+                        cursor: "pointer",
+                      }}
+                      onClick={(e) => {
+                        swiper.slideTo(item);
                       }}
                     >
                       &nbsp;
