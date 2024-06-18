@@ -54,6 +54,7 @@ export function ViewArt(props) {
   const [data, setData] = new useState({});
   const [images, setImages] = new useState(imageList);
   const [activeImage, setActiveImage] = useState("");
+  const [availableImages, setAvailableImages] = useState(0);
   const imageOverlay = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     padding: "10px",
@@ -152,6 +153,13 @@ export function ViewArt(props) {
         const result = await apiRequest("GET", "/document/" + imageId); // Replace with your API endpoint
         // console.log(result);
         // console.log(typeof result);
+        var imagesLen = 0;
+        for (var im in result.images) {
+          if (images[im]) {
+            imagesLen++;
+          }
+        }
+        setAvailableImages(imagesLen);
         setImages(result.images);
         setImage(JSON.parse(result.image1).image);
         setActiveImage(result.images[0]);
@@ -277,6 +285,7 @@ export function ViewArt(props) {
                         padding: "15px",
                         borderRadius: "50%",
                         background: "rgba(137,241,222,1)",
+                        cursor: "pointer",
                       }}
                       onClick={(e) => {
                         setExpandImage(false);
@@ -301,6 +310,7 @@ export function ViewArt(props) {
                         padding: "15px",
                         borderRadius: "50%",
                         background: "rgba(137,241,222,1)",
+                        cursor: "pointer",
                       }}
                       onClick={(e) => {
                         setExpandImage(true);
@@ -313,7 +323,9 @@ export function ViewArt(props) {
                       flexDirection: "row",
                       width: "100%",
                       justifyContent:
-                        props.isMobileLandscape || props.isMobile
+                        props.isMobileLandscape ||
+                        props.isMobile ||
+                        availableImages < 4
                           ? "center"
                           : "space-between",
                       flexWrap: "wrap",
@@ -321,14 +333,16 @@ export function ViewArt(props) {
                     }}
                   >
                     {images.map((image) => {
-                      return (
+                      return image ? (
                         <div
                           style={{
                             width: props.isMobileLandscape ? "60px" : "100px",
                             height: props.isMobileLandscape ? "60px" : "100px",
                             marginTop: "5%",
                             marginRight:
-                              props.isMobileLandscape || props.isMobile
+                              props.isMobileLandscape ||
+                              props.isMobile ||
+                              availableImages < 4
                                 ? "2%"
                                 : "",
                             border:
@@ -349,7 +363,7 @@ export function ViewArt(props) {
                         >
                           &nbsp;
                         </div>
-                      );
+                      ) : null;
                     })}
                     {/* abdul */}
                   </div>
