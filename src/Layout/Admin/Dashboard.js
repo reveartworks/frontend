@@ -175,7 +175,7 @@ export function Dashboard(props) {
         }
         setImages(result);
         setInitialImages(result);
-        setImage(JSON.parse(result[0].image1).image);
+        // setImage(JSON.parse(result[0].image1).image);
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch data:", error);

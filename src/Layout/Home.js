@@ -71,7 +71,7 @@ export function Home(props) {
     color: "white",
     fontSize: "1rem",
     marginLeft: "5%",
-    maxWidth: "80%",
+    maxWidth: props.isMobile ? "60%" : "80%",
     maxHeight: "8rem",
     fontFamily: "serif",
     overflow: "hidden",
@@ -146,6 +146,7 @@ export function Home(props) {
         <Loading
           isMobile={props.isMobile}
           isMobileLandscape={props.isMobileLandscape}
+          isHome={true}
         />
       ) : null}
       <div>
@@ -361,7 +362,10 @@ export function Home(props) {
                         flexDirection: "row",
                       }}
                     >
-                      <div style={{ width: "50%" }} className="overlay-text">
+                      <div
+                        style={{ width: props.isMobile ? "100%" : "50%" }}
+                        className="overlay-text"
+                      >
                         <div style={imageOverlay}>
                           <p style={{ textTransform: "capitalize" }}>
                             {gridImages[0].name}
@@ -373,8 +377,12 @@ export function Home(props) {
                         </div>
                       </div>
                       {/* <div style={{ width: "25%" }}></div> */}
-                      <div style={{ width: "25%" }}></div>
-                      <div style={{ width: "25%" }}></div>
+                      {!props.isMobile ? (
+                        <div style={{ width: "25%" }}></div>
+                      ) : null}
+                      {!props.isMobile ? (
+                        <div style={{ width: "25%" }}></div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -382,14 +390,14 @@ export function Home(props) {
                   style={{
                     width: "100%",
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: props.isMobile ? "column" : "row",
                     justifyContent: "space-between",
                     marginBottom: "2%",
                   }}
                 >
                   <div
                     style={{
-                      width: "49%",
+                      width: props.isMobile ? "100%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[1].image1).image
@@ -427,7 +435,10 @@ export function Home(props) {
                           flexDirection: "row",
                         }}
                       >
-                        <div style={{ width: "60%" }} className="overlay-text">
+                        <div
+                          style={{ width: props.isMobile ? "100%" : "60%" }}
+                          className="overlay-text"
+                        >
                           <div style={imageOverlayMini}>
                             <p style={{ textTransform: "capitalize" }}>
                               {gridImages[1].name}
@@ -446,7 +457,7 @@ export function Home(props) {
                   </div>
                   <div
                     style={{
-                      width: "49%",
+                      width: props.isMobile ? "100%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[2].image1).image
@@ -484,7 +495,10 @@ export function Home(props) {
                           flexDirection: "row",
                         }}
                       >
-                        <div style={{ width: "60%" }} className="overlay-text">
+                        <div
+                          style={{ width: props.isMobile ? "100%" : "60%" }}
+                          className="overlay-text"
+                        >
                           <div style={imageOverlayMini}>
                             <p style={{ textTransform: "capitalize" }}>
                               {gridImages[2].name}
@@ -549,7 +563,7 @@ export function Home(props) {
                         flexDirection: "row",
                       }}
                     >
-                      <div style={{ width: "50%" }}>
+                      <div style={{ width: props.isMobile ? "100%" : "50%" }}>
                         <div style={imageOverlay} className="overlay-text">
                           <p style={{ textTransform: "capitalize" }}>
                             {gridImages[3].name}
@@ -561,8 +575,12 @@ export function Home(props) {
                         </div>
                       </div>
                       {/* <div style={{ width: "25%" }}></div> */}
-                      <div style={{ width: "25%" }}></div>
-                      <div style={{ width: "25%" }}></div>
+                      {!props.isMobile ? (
+                        <div style={{ width: "25%" }}></div>
+                      ) : null}
+                      {!props.isMobile ? (
+                        <div style={{ width: "25%" }}></div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -570,14 +588,14 @@ export function Home(props) {
                   style={{
                     width: "100%",
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: props.isMobile ? "column" : "row",
                     justifyContent: "space-between",
                     marginBottom: "2%",
                   }}
                 >
                   <div
                     style={{
-                      width: "49%",
+                      width: props.isMobile ? "100%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[4].image1).image
@@ -615,7 +633,7 @@ export function Home(props) {
                           flexDirection: "row",
                         }}
                       >
-                        <div style={{ width: "60%" }}>
+                        <div style={{ width: props.isMobile ? "100%" : "60%" }}>
                           <div
                             style={imageOverlayMini}
                             className="overlay-text"
@@ -637,7 +655,7 @@ export function Home(props) {
                   </div>
                   <div
                     style={{
-                      width: "49%",
+                      width: props.isMobile ? "100%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[5].image1).image
@@ -675,7 +693,7 @@ export function Home(props) {
                           flexDirection: "row",
                         }}
                       >
-                        <div style={{ width: "60%" }}>
+                        <div style={{ width: props.isMobile ? "100%" : "60%" }}>
                           <div
                             style={imageOverlayMini}
                             className="overlay-text"

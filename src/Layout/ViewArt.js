@@ -161,7 +161,7 @@ export function ViewArt(props) {
         }
         setAvailableImages(imagesLen);
         setImages(result.images);
-        setImage(JSON.parse(result.image1).image);
+        // setImage(JSON.parse(result.image1).image);
         setActiveImage(result.images[0]);
         setData(result);
       } catch (error) {

@@ -188,7 +188,7 @@ export function ListArt(props) {
         }
         setImages(result);
         setInitialImages(result);
-        setImage(JSON.parse(result[0].image1).image);
+        // setImage(JSON.parse(result[0].image1).image);
         setSortByLabel("None");
         setSortByOrder("none");
         setShowRating(true);
@@ -217,6 +217,7 @@ export function ListArt(props) {
             backgroundImage: `url(${image})`,
             //   backgroundColor: "#cccccc",
             backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             height: props.isMobile ? "11vh" : "14vh",
           }}

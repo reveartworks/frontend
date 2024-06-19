@@ -305,7 +305,7 @@ export function UploadArt(props) {
             width: "100%",
             backgroundImage: image.startsWith("data:image")
               ? `url(${image})`
-              : `url('data:image/png;base64,${image}')`,
+              : `url(${image})`,
             //   backgroundColor: "#cccccc",
             backgroundSize: "cover",
             backgroundPosition: "center",
