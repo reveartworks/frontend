@@ -432,7 +432,7 @@ export function UploadArt(props) {
                       backgroundImage: image2
                         ? `url(${image2})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "contain",
+                      backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                     }}
@@ -461,7 +461,7 @@ export function UploadArt(props) {
                       backgroundImage: image3
                         ? `url(${image3})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "contain",
+                      backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                     }}
@@ -490,7 +490,7 @@ export function UploadArt(props) {
                       backgroundImage: image4
                         ? `url(${image4})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "contain",
+                      backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                     }}
@@ -518,7 +518,7 @@ export function UploadArt(props) {
                       backgroundImage: image5
                         ? `url(${image5})`
                         : `url(${uploadImageIcon})`,
-                      backgroundSize: "contain",
+                      backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       borderRadius: "10px",
                       //   marginRight: "5%",
