@@ -226,8 +226,8 @@ export function UploadArt(props) {
       console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
 
       const options = {
-        maxSizeMB: 0.1,
-        maxWidthOrHeight: 1920,
+        maxSizeMB: 0.2,
+        maxWidthOrHeight: 2560,
         useWebWorker: true,
       };
 

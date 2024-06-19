@@ -329,7 +329,7 @@ export function Home(props) {
                       JSON.parse(gridImages[0].image1).image
                     })`,
                     borderRadius: "20px",
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
                     backgroundPosition: "center",
                     height: "30rem",
                     minHeight: "20rem",
@@ -510,7 +510,7 @@ export function Home(props) {
                       JSON.parse(gridImages[3].image1).image
                     })`,
                     borderRadius: "20px",
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
                     backgroundPosition: "center",
                     height: "30rem",
                     minHeight: "20rem",
