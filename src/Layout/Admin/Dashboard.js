@@ -232,41 +232,31 @@ export function Dashboard(props) {
               marginTop: "1%",
             }}
           >
-            {/* <div
+            <div
               style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                // marginLeft: "1%",
+                marginLeft: props.isMobile ? "3%" : "",
                 marginRight: "3%",
-                alignItems: "baseline",
-              }}
-            >
-              <div style={{ marginTop: "-1%" }}>
-                <p className="" style={{ fontSize: "2rem" }}>
-                  Artworks{" "}
-                </p>
-              </div>
-              <div>Sort by:</div>
-            </div> */}
-
-            <div
-              style={{
-                display: "flex",
-                flexDirection: props.isMobile ? "column" : "row",
-                justifyContent: "space-between",
-                // marginLeft: "1%",
-                marginRight: "3%",
+                marginTop: props.isMobile ? "2%" : "",
                 alignItems: props.isMobile ? "center" : "baseline",
                 marginBottom: props.isMobile ? "8%" : "",
+                fontSize: props.isMobile ? "0.8rem" : "",
               }}
             >
-              <div style={{ marginTop: props.isMobile ? "-5%" : "-1%" }}>
+              <div
+                style={{
+                  marginTop: props.isMobile ? "-3%" : "-1%",
+                  minWidth: props.isMobile ? "25%" : "",
+                  paddingLeft: props.isMobile ? "5%" : "",
+                }}
+              >
                 <p
                   className=""
                   style={{
                     fontSize: props.isMobile
-                      ? "1.5rem"
+                      ? "1rem"
                       : props.isMobileLandscape
                       ? "1.5rem"
                       : "2rem",
@@ -276,7 +266,13 @@ export function Dashboard(props) {
                   Artworks{" "}
                 </p>
               </div>
-              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: props.isMobile ? "-2%" : "",
+                }}
+              >
                 <div style={{ width: "150px", textAlign: "center" }}>
                   Filter by:
                 </div>
@@ -286,20 +282,14 @@ export function Dashboard(props) {
                   }}
                 >
                   <button
-                    id="demo-positioned-button"
-                    aria-controls={
-                      openSort ? "demo-positioned-menu" : undefined
-                    }
-                    aria-haspopup="true"
-                    aria-expanded={openSort ? "true" : undefined}
                     onClick={handleSortClick}
                     style={{
                       color: "rgb(31,165,141,1)",
                       backgroundColor: "white",
-                      width: "200px",
-                      height: "30px",
-                      borderRadius: "15px",
-                      fontSize: "1.1rem",
+                      width: "150px",
+                      height: "20px",
+                      borderRadius: "10px",
+                      fontSize: "0.8rem",
                       cursor: "pointer",
                       border: "1px solid rgb(31,165,141,1)",
                       marginTop: "-2%",
@@ -432,6 +422,7 @@ export function Dashboard(props) {
                         height: props.isMobile ? "90vw" : "250px",
                         width: props.isMobile ? "90vw" : "250px",
                         borderRadius: "10px",
+                        boxShadow: "0 0 15px 10px lightgray",
                         backgroundImage: `url(${
                           JSON.parse(item.image1).image
                         })`,
@@ -446,7 +437,8 @@ export function Dashboard(props) {
                     <div
                       style={{
                         marginLeft: "2%",
-                        marginTop: "2%",
+                        marginTop: "3%",
+                        marginBottom: "3%",
                         textTransform: "capitalize",
                         display: "flex",
                         flexDirection: "column",

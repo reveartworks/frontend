@@ -220,549 +220,558 @@ export function ViewArt(props) {
                 isMobile={props.isMobile}
                 isMobileLandscape={props.isMobileLandscape}
               />
-            ) : null}
-            <Container>
-              <div
-                id="imageDetails"
-                style={{
-                  display: "flex",
-                  flexDirection: props.isMobile ? "column" : "row",
-                  flexWrap: "wrap",
-                  marginTop: "5%",
-                }}
-              >
+            ) : (
+              <Container>
                 <div
-                  id="imagesSection"
+                  id="imageDetails"
                   style={{
                     display: "flex",
-                    flexDirection: "column",
-                    width: props.isMobileLandscape ? "50%" : "",
+                    flexDirection: props.isMobile ? "column" : "row",
+                    flexWrap: "wrap",
+                    marginTop: "5%",
                   }}
                 >
                   <div
+                    id="imagesSection"
                     style={{
-                      width: props.isMobileLandscape
-                        ? "100%"
-                        : props.isMobile
-                        ? "97%"
-                        : "70%",
-                      height: props.isMobileLandscape
-                        ? "80vh"
-                        : props.isMobile
-                        ? "40vh"
-                        : "70vh",
-                      minWidth: props.isMobileLandscape
-                        ? "250px"
-                        : props.isMobile
-                        ? "200px"
-                        : "550px",
-                      backgroundImage: `url(${activeImage})`,
-                      borderRadius: "10px",
-                      backgroundSize: expandImage ? "contain" : "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
+                      display: "flex",
+                      flexDirection: "column",
+                      width: props.isMobileLandscape ? "50%" : "",
                     }}
                   >
-                    {/* <img src={`data:image/png;base64,${image}`} /> */}&nbsp;
-                    {/* {expandImage ? (
+                    <div
+                      style={{
+                        width: props.isMobileLandscape
+                          ? "100%"
+                          : props.isMobile
+                          ? "97%"
+                          : "70%",
+                        height: props.isMobileLandscape
+                          ? "80vh"
+                          : props.isMobile
+                          ? "40vh"
+                          : "70vh",
+                        minWidth: props.isMobileLandscape
+                          ? "250px"
+                          : props.isMobile
+                          ? "200px"
+                          : "550px",
+                        backgroundImage: `url(${activeImage})`,
+                        borderRadius: "10px",
+                        backgroundSize: expandImage ? "contain" : "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        boxShadow: "0 0 25px 10px lightgray",
+                      }}
+                    >
+                      {/* <img src={`data:image/png;base64,${image}`} /> */}
+                      &nbsp;
+                      {/* {expandImage ? (
                       <p>collapse</p>
                     ) : (
                       <AspectRatioIcon style={{ color: "gray", right: "0" }} />
                     )} */}
-                  </div>
-                  {expandImage ? (
-                    <CloseFullscreenIcon
-                      style={{
-                        color: "white",
-                        margin: "auto",
-                        marginTop: "10px",
-                        // marginTop: props.isMobile
-                        //   ? "95%"
-                        //   : props.isMobileLandscape
-                        //   ? "90%"
-                        //   : "85%",
-                        // marginLeft: "85%",
-                        padding: "15px",
-                        borderRadius: "50%",
-                        background: "rgba(137,241,222,1)",
-                        cursor: "pointer",
-                      }}
-                      onClick={(e) => {
-                        setExpandImage(false);
-                      }}
-                    />
-                  ) : (
-                    <OpenInFullIcon
-                      style={{
-                        color: "white",
-                        margin: "auto",
-                        marginTop: "10px",
-                        // marginTop: props.isMobile
-                        //   ? "75%"
-                        //   : props.isMobileLandscape
-                        //   ? "90%"
-                        //   : "85%",
-                        // marginLeft: props.isMobile
-                        //   ? "80%"
-                        //   : props.isMobileLandscape
-                        //   ? "85"
-                        //   : "85%",
-                        padding: "15px",
-                        borderRadius: "50%",
-                        background: "rgba(137,241,222,1)",
-                        cursor: "pointer",
-                      }}
-                      onClick={(e) => {
-                        setExpandImage(true);
-                      }}
-                    />
-                  )}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      width: "100%",
-                      justifyContent:
-                        props.isMobileLandscape ||
-                        props.isMobile ||
-                        availableImages < 4
-                          ? "center"
-                          : "space-between",
-                      flexWrap: "wrap",
-                      marginBottom: "5%",
-                    }}
-                  >
-                    {images.map((image) => {
-                      return image ? (
-                        <div
-                          style={{
-                            width: props.isMobileLandscape ? "60px" : "100px",
-                            height: props.isMobileLandscape ? "60px" : "100px",
-                            marginTop: "5%",
-                            marginRight:
-                              props.isMobileLandscape ||
-                              props.isMobile ||
-                              availableImages < 4
-                                ? "2%"
-                                : "",
-                            border:
-                              activeImage == image
-                                ? "4px solid rgb(31,165,141,1)"
-                                : "none",
-                            borderRadius: "10px",
-                            backgroundImage: `url(${image})`,
-                            borderRadius: "10px",
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            cursor: "pointer",
-                            display: image ? "block" : "none",
-                          }}
-                          onClick={(e) => {
-                            setActiveImage(image);
-                          }}
-                        >
-                          &nbsp;
-                        </div>
-                      ) : null;
-                    })}
-                    {/* abdul */}
-                  </div>
-                </div>
-                {data.name ? (
-                  <div
-                    id="detailsSection"
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      marginLeft: props.isMobile ? "" : "5%",
-                      maxWidth: "500px",
-                      alignItems: props.isMobile ? "center" : "",
-                    }}
-                  >
+                    </div>
+                    {expandImage ? (
+                      <CloseFullscreenIcon
+                        style={{
+                          color: "white",
+                          margin: "auto",
+                          marginTop: "10px",
+                          // marginTop: props.isMobile
+                          //   ? "95%"
+                          //   : props.isMobileLandscape
+                          //   ? "90%"
+                          //   : "85%",
+                          // marginLeft: "85%",
+                          padding: "15px",
+                          borderRadius: "50%",
+                          background: "rgba(137,241,222,1)",
+                          cursor: "pointer",
+                        }}
+                        onClick={(e) => {
+                          setExpandImage(false);
+                        }}
+                      />
+                    ) : (
+                      <OpenInFullIcon
+                        style={{
+                          color: "white",
+                          margin: "auto",
+                          marginTop: "10px",
+                          // marginTop: props.isMobile
+                          //   ? "75%"
+                          //   : props.isMobileLandscape
+                          //   ? "90%"
+                          //   : "85%",
+                          // marginLeft: props.isMobile
+                          //   ? "80%"
+                          //   : props.isMobileLandscape
+                          //   ? "85"
+                          //   : "85%",
+                          padding: "15px",
+                          borderRadius: "50%",
+                          background: "rgba(137,241,222,1)",
+                          cursor: "pointer",
+                        }}
+                        onClick={(e) => {
+                          setExpandImage(true);
+                        }}
+                      />
+                    )}
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "column",
-                        alignItems: props.isMobile ? "center" : "start",
+                        flexDirection: "row",
+                        width: "100%",
+                        justifyContent:
+                          props.isMobileLandscape ||
+                          props.isMobile ||
+                          availableImages < 4
+                            ? "center"
+                            : "space-between",
+                        flexWrap: "wrap",
+                        marginBottom: "5%",
                       }}
                     >
-                      <div>
-                        <p
-                          style={{
-                            fontSize: props.isMobileLandscape
-                              ? "2rem"
-                              : props.isMobile
-                              ? "1.5rem"
-                              : "3rem",
-                            marginBottom: "1%",
-                            fontFamily: "serif",
-                            marginTop: "0",
-                          }}
-                        >
-                          {data.name}
-                        </p>
-                      </div>
-                      <div>
-                        <Stack spacing={1}>
-                          <Rating
-                            name="half-rating-read"
-                            defaultValue={parseFloat(data.rating)}
-                            precision={0.5}
-                            readOnly
-                            size="large"
-                          />
-                        </Stack>
-                      </div>
-                    </div>
-                    {/* <br /> */}
-                    <br />
-                    <div
-                      style={{ textAlign: props.isMobile ? "center" : "start" }}
-                    >
-                      <p
-                        style={{
-                          fontSize: "0.9rem",
-                          marginBottom: "0px",
-                          color: "black",
-                        }}
-                      >
-                        Size:
-                      </p>
-                      <div
-                        style={{
-                          width: "50px",
-                          height: "30px",
-                          border: "1px solid rgb(31,165,141,1)",
-                          color: "black",
-                          // backgroundColor: "rgb(31,165,141,1)",
-                          borderRadius: "15px",
-                          textAlign: "center",
-                          alignContent: "center",
-                          marginTop: "2%",
-                          fontSize: "0.8rem",
-                        }}
-                      >
-                        <div style={{ margin: "auto" }}>
-                          {data.height}x{data.width}'
-                        </div>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={handleOpen}
-                      style={{
-                        color: "white",
-                        backgroundColor: "rgb(31,165,141,1)",
-                        width: "270px",
-                        height: "50px",
-                        borderRadius: "25px",
-                        border: "none",
-                        marginTop: "5%",
-                        fontSize: "1.1rem",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Contact Us For Purchase
-                    </button>
-                    <Modal
-                      open={open}
-                      onClose={handleClose}
-                      aria-labelledby="modal-modal-title"
-                      aria-describedby="modal-modal-description"
-                    >
-                      <Box sx={modalStyle}>
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
+                      {images.map((image) => {
+                        return image ? (
                           <div
                             style={{
-                              display: "flex",
-                              flexDirection: "row",
-                              justifyContent: "space-between",
-                              flexWrap: "wrap",
+                              width: props.isMobileLandscape ? "60px" : "100px",
+                              height: props.isMobileLandscape
+                                ? "60px"
+                                : "100px",
+                              marginTop: "5%",
+                              marginRight:
+                                props.isMobileLandscape ||
+                                props.isMobile ||
+                                availableImages < 4
+                                  ? "2%"
+                                  : "",
+                              border:
+                                activeImage == image
+                                  ? "4px solid rgb(31,165,141,1)"
+                                  : "none",
+                              borderRadius: "10px",
+                              backgroundImage: `url(${image})`,
+                              borderRadius: "10px",
+                              backgroundSize: "cover",
+                              backgroundPosition: "center",
+                              cursor: "pointer",
+                              display: image ? "block" : "none",
+                            }}
+                            onClick={(e) => {
+                              setActiveImage(image);
                             }}
                           >
-                            <div>
-                              <img src={contactLogo} />
-                            </div>
-                            <div style={{ alignContent: "center" }}>
-                              <CloseIcon
-                                fontSize="large"
-                                style={{ color: "gray", cursor: "pointer" }}
-                                onClick={handleClose}
-                              />
-                            </div>
+                            &nbsp;
                           </div>
-                          <div
+                        ) : null;
+                      })}
+                      {/* abdul */}
+                    </div>
+                  </div>
+                  {data.name ? (
+                    <div
+                      id="detailsSection"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginLeft: props.isMobile ? "" : "5%",
+                        maxWidth: "500px",
+                        alignItems: props.isMobile ? "center" : "",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: props.isMobile ? "center" : "start",
+                        }}
+                      >
+                        <div>
+                          <p
                             style={{
-                              width: "100%",
-                              display: "flex",
-                              flexDirection: props.isMobile ? "column" : "row",
-                              maxHeight: props.isMobile
-                                ? "500px"
-                                : props.isMobileLandscape
-                                ? "200px"
-                                : "",
-                              overflow: "scroll",
+                              fontSize: props.isMobileLandscape
+                                ? "2rem"
+                                : props.isMobile
+                                ? "1.5rem"
+                                : "3rem",
+                              marginBottom: "1%",
+                              fontFamily: "serif",
+                              marginTop: "0",
+                              textTransform: "capitalize",
                             }}
+                          >
+                            {data.name}
+                          </p>
+                        </div>
+                        <div>
+                          <Stack spacing={1}>
+                            <Rating
+                              name="half-rating-read"
+                              defaultValue={parseFloat(data.rating)}
+                              precision={0.5}
+                              readOnly
+                              size="large"
+                            />
+                          </Stack>
+                        </div>
+                      </div>
+                      {/* <br /> */}
+                      <br />
+                      <div
+                        style={{
+                          textAlign: props.isMobile ? "center" : "start",
+                        }}
+                      >
+                        <p
+                          style={{
+                            fontSize: "0.9rem",
+                            marginBottom: "0px",
+                            color: "black",
+                          }}
+                        >
+                          Size:
+                        </p>
+                        <div
+                          style={{
+                            width: "50px",
+                            height: "30px",
+                            border: "1px solid rgb(31,165,141,1)",
+                            color: "black",
+                            // backgroundColor: "rgb(31,165,141,1)",
+                            borderRadius: "15px",
+                            textAlign: "center",
+                            alignContent: "center",
+                            marginTop: "2%",
+                            fontSize: "0.8rem",
+                          }}
+                        >
+                          <div style={{ margin: "auto" }}>
+                            {data.height}x{data.width}'
+                          </div>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={handleOpen}
+                        style={{
+                          color: "white",
+                          backgroundColor: "rgb(31,165,141,1)",
+                          width: "270px",
+                          height: "50px",
+                          borderRadius: "25px",
+                          border: "none",
+                          marginTop: "5%",
+                          fontSize: "1.1rem",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Contact Us For Purchase
+                      </button>
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={modalStyle}>
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
                           >
                             <div
                               style={{
-                                width: props.isMobile ? "100%" : "30%",
-                                textAlign: props.isMobile ? "center" : "",
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                                flexWrap: "wrap",
                               }}
                             >
-                              <p
-                                style={{
-                                  fontSize: "2rem",
-                                  fontFamily: "serif",
-                                }}
-                              >
-                                Contact Us
-                              </p>
-                              <p>
-                                We'd love to hear from you! Whether you have a
-                                question, feedback, or just want to say hello,
-                                our team is here to help. By providing your
-                                details below, you enable us to connect with you
-                                directly and address your needs promptly.
-                              </p>
+                              <div>
+                                <img src={contactLogo} />
+                              </div>
+                              <div style={{ alignContent: "center" }}>
+                                <CloseIcon
+                                  fontSize="large"
+                                  style={{ color: "gray", cursor: "pointer" }}
+                                  onClick={handleClose}
+                                />
+                              </div>
                             </div>
-                            {contacted ? (
-                              <Typography
-                                id="modal-nodal-title"
-                                variant="h6"
-                                component="h2"
-                              >
-                                Thank You! We have received your request. Our
-                                team will be in touch with you soon.
-                              </Typography>
-                            ) : contactError ? (
-                              <Typography
-                                id="modal-nodal-title"
-                                variant="h6"
-                                component="h2"
-                              >
-                                {" "}
-                                Sorry, We are currently facing some technical
-                                issues, Please try again later.{" "}
-                              </Typography>
-                            ) : (
+                            <div
+                              style={{
+                                width: "100%",
+                                display: "flex",
+                                flexDirection: props.isMobile
+                                  ? "column"
+                                  : "row",
+                                maxHeight: props.isMobile
+                                  ? "500px"
+                                  : props.isMobileLandscape
+                                  ? "200px"
+                                  : "",
+                                overflow: "scroll",
+                              }}
+                            >
                               <div
                                 style={{
-                                  // width: "70%",
-                                  fontSize: "0.8rem",
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  width: props.isMobile ? "100%" : "60%",
-                                  margin: "auto",
+                                  width: props.isMobile ? "100%" : "30%",
+                                  textAlign: props.isMobile ? "center" : "",
                                 }}
                               >
-                                <div
+                                <p
                                   style={{
-                                    display: "flex",
-                                    flexDirection: props.isMobile
-                                      ? "column"
-                                      : "row",
-                                    justifyContent: "space-between",
-                                  }}
-                                >
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      flexDirection: "column",
-                                      width: props.isMobile ? "100%" : "48%",
-                                    }}
-                                  >
-                                    <div
-                                      style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                      }}
-                                    >
-                                      <p style={{ color: "red" }}>*</p>{" "}
-                                      &nbsp;&nbsp;First Name
-                                    </div>
-                                    <div
-                                      style={{
-                                        border: "1px solid lightgray",
-                                        height: "30px",
-                                        borderRadius: "15px",
-                                        paddingLeft: "3%",
-                                        alignContent: "center",
-                                      }}
-                                    >
-                                      <input
-                                        style={{
-                                          outline: "none",
-                                          border: "none",
-                                          width: "90%",
-                                        }}
-                                        placeholder="Enter First Name"
-                                        id="firstName"
-                                        value={firstName}
-                                        onChange={(e) => {
-                                          setFirstName(e.target.value);
-                                        }}
-                                      />
-                                    </div>
-                                  </div>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      flexDirection: "column",
-                                      width: props.isMobile ? "100%" : "48%",
-                                    }}
-                                  >
-                                    <div
-                                      style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                      }}
-                                    >
-                                      <p style={{ color: "red" }}>*</p>{" "}
-                                      &nbsp;&nbsp;Last Name
-                                    </div>
-                                    <div
-                                      style={{
-                                        border: "1px solid lightgray",
-                                        height: "30px",
-                                        borderRadius: "15px",
-                                        paddingLeft: "3%",
-                                        alignContent: "center",
-                                      }}
-                                    >
-                                      <input
-                                        style={{
-                                          outline: "none",
-                                          border: "none",
-                                          width: "90%",
-                                        }}
-                                        placeholder="Enter Last Name"
-                                        id="lastName"
-                                        value={lastName}
-                                        onChange={(e) => {
-                                          setLastName(e.target.value);
-                                        }}
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <br />
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    width: "100%",
-                                  }}
-                                >
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      flexDirection: "row",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <p style={{ color: "red" }}>*</p>{" "}
-                                    &nbsp;&nbsp;Email
-                                  </div>
-                                  <div
-                                    style={{
-                                      border: "1px solid lightgray",
-                                      height: "30px",
-                                      borderRadius: "15px",
-                                      paddingLeft: "1.5%",
-                                      alignContent: "center",
-                                    }}
-                                  >
-                                    <input
-                                      style={{
-                                        outline: "none",
-                                        border: "none",
-                                        width: "90%",
-                                      }}
-                                      placeholder="Enter Email"
-                                      id="email"
-                                      type="email"
-                                      value={email}
-                                      onChange={(e) => {
-                                        setEmail(e.target.value);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                                <br />
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    width: "100%",
-                                  }}
-                                >
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      flexDirection: "row",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <p>&nbsp;</p>
-                                    {/* <p style={{ color: "red" }}>*</p>{" "} */}
-                                    &nbsp;&nbsp;Comments
-                                  </div>
-                                  <div
-                                    style={{
-                                      border: "1px solid lightgray",
-                                      height: "30px",
-                                      borderRadius: "15px",
-                                      padding: "1.5%",
-                                      // alignContent: "center",
-                                      width: "98%",
-                                      resize: "none",
-                                      minHeight: "100px",
-                                    }}
-                                  >
-                                    <textarea
-                                      style={{
-                                        outline: "none",
-                                        border: "none",
-                                        width: "90%",
-                                        resize: "none",
-                                      }}
-                                      placeholder="Please Leave A Message"
-                                      id="comments"
-                                      value={comments}
-                                      onChange={(e) => {
-                                        setComments(e.target.value);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                                <button
-                                  style={{
-                                    color: "white",
-                                    backgroundColor: "rgb(31,165,141,1)",
-                                    width: "200px",
-                                    height: "50px",
-                                    borderRadius: "25px",
-                                    border: "none",
-                                    marginTop: "5%",
-                                    fontSize: "1.1rem",
-                                    cursor: "pointer",
-                                  }}
-                                  onClick={(e) => {
-                                    handleContact();
+                                    fontSize: "2rem",
+                                    fontFamily: "serif",
                                   }}
                                 >
                                   Contact Us
-                                </button>
+                                </p>
+                                <p>
+                                  We'd love to hear from you! Whether you have a
+                                  question, feedback, or just want to say hello,
+                                  our team is here to help. By providing your
+                                  details below, you enable us to connect with
+                                  you directly and address your needs promptly.
+                                </p>
                               </div>
-                            )}
+                              {contacted ? (
+                                <Typography
+                                  id="modal-nodal-title"
+                                  variant="h6"
+                                  component="h2"
+                                >
+                                  Thank You! We have received your request. Our
+                                  team will be in touch with you soon.
+                                </Typography>
+                              ) : contactError ? (
+                                <Typography
+                                  id="modal-nodal-title"
+                                  variant="h6"
+                                  component="h2"
+                                >
+                                  {" "}
+                                  Sorry, We are currently facing some technical
+                                  issues, Please try again later.{" "}
+                                </Typography>
+                              ) : (
+                                <div
+                                  style={{
+                                    // width: "70%",
+                                    fontSize: "0.8rem",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    width: props.isMobile ? "100%" : "60%",
+                                    margin: "auto",
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      flexDirection: props.isMobile
+                                        ? "column"
+                                        : "row",
+                                      justifyContent: "space-between",
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        width: props.isMobile ? "100%" : "48%",
+                                      }}
+                                    >
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          flexDirection: "row",
+                                          alignItems: "center",
+                                        }}
+                                      >
+                                        <p style={{ color: "red" }}>*</p>{" "}
+                                        &nbsp;&nbsp;First Name
+                                      </div>
+                                      <div
+                                        style={{
+                                          border: "1px solid lightgray",
+                                          height: "30px",
+                                          borderRadius: "15px",
+                                          paddingLeft: "3%",
+                                          alignContent: "center",
+                                        }}
+                                      >
+                                        <input
+                                          style={{
+                                            outline: "none",
+                                            border: "none",
+                                            width: "90%",
+                                          }}
+                                          placeholder="Enter First Name"
+                                          id="firstName"
+                                          value={firstName}
+                                          onChange={(e) => {
+                                            setFirstName(e.target.value);
+                                          }}
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        width: props.isMobile ? "100%" : "48%",
+                                      }}
+                                    >
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          flexDirection: "row",
+                                          alignItems: "center",
+                                        }}
+                                      >
+                                        <p style={{ color: "red" }}>*</p>{" "}
+                                        &nbsp;&nbsp;Last Name
+                                      </div>
+                                      <div
+                                        style={{
+                                          border: "1px solid lightgray",
+                                          height: "30px",
+                                          borderRadius: "15px",
+                                          paddingLeft: "3%",
+                                          alignContent: "center",
+                                        }}
+                                      >
+                                        <input
+                                          style={{
+                                            outline: "none",
+                                            border: "none",
+                                            width: "90%",
+                                          }}
+                                          placeholder="Enter Last Name"
+                                          id="lastName"
+                                          value={lastName}
+                                          onChange={(e) => {
+                                            setLastName(e.target.value);
+                                          }}
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <br />
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      flexDirection: "column",
+                                      width: "100%",
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <p style={{ color: "red" }}>*</p>{" "}
+                                      &nbsp;&nbsp;Email
+                                    </div>
+                                    <div
+                                      style={{
+                                        border: "1px solid lightgray",
+                                        height: "30px",
+                                        borderRadius: "15px",
+                                        paddingLeft: "1.5%",
+                                        alignContent: "center",
+                                      }}
+                                    >
+                                      <input
+                                        style={{
+                                          outline: "none",
+                                          border: "none",
+                                          width: "90%",
+                                        }}
+                                        placeholder="Enter Email"
+                                        id="email"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => {
+                                          setEmail(e.target.value);
+                                        }}
+                                      />
+                                    </div>
+                                  </div>
+                                  <br />
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      flexDirection: "column",
+                                      width: "100%",
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <p>&nbsp;</p>
+                                      {/* <p style={{ color: "red" }}>*</p>{" "} */}
+                                      &nbsp;&nbsp;Comments
+                                    </div>
+                                    <div
+                                      style={{
+                                        border: "1px solid lightgray",
+                                        height: "30px",
+                                        borderRadius: "15px",
+                                        padding: "1.5%",
+                                        // alignContent: "center",
+                                        width: "98%",
+                                        resize: "none",
+                                        minHeight: "100px",
+                                      }}
+                                    >
+                                      <textarea
+                                        style={{
+                                          outline: "none",
+                                          border: "none",
+                                          width: "90%",
+                                          resize: "none",
+                                        }}
+                                        placeholder="Please Leave A Message"
+                                        id="comments"
+                                        value={comments}
+                                        onChange={(e) => {
+                                          setComments(e.target.value);
+                                        }}
+                                      />
+                                    </div>
+                                  </div>
+                                  <button
+                                    style={{
+                                      color: "white",
+                                      backgroundColor: "rgb(31,165,141,1)",
+                                      width: "200px",
+                                      height: "50px",
+                                      borderRadius: "25px",
+                                      border: "none",
+                                      marginTop: "5%",
+                                      fontSize: "1.1rem",
+                                      cursor: "pointer",
+                                    }}
+                                    onClick={(e) => {
+                                      handleContact();
+                                    }}
+                                  >
+                                    Contact Us
+                                  </button>
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        {/* <Typography
+                          {/* <Typography
                         id="modal-modal-title"
                         variant="h6"
                         component="h2"
@@ -773,20 +782,21 @@ export function ViewArt(props) {
                         Duis mollis, est non commodo luctus, nisi erat porttitor
                         ligula.
                       </Typography> */}
-                      </Box>
-                    </Modal>
-                    <div>
-                      <p
-                        id="description"
-                        style={{ color: "#4E4E4E", fontSize: "0.9rem" }}
-                      >
-                        {data.description}
-                      </p>
+                        </Box>
+                      </Modal>
+                      <div>
+                        <p
+                          id="description"
+                          style={{ color: "#4E4E4E", fontSize: "0.9rem" }}
+                        >
+                          {data.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ) : null}
-              </div>
-            </Container>
+                  ) : null}
+                </div>
+              </Container>
+            )}
             {/* <div
               style={{
                 display: "flex",

@@ -60,7 +60,7 @@ export function Home(props) {
     maxWidth: "60%",
     fontFamily: "serif",
     overflow: "hidden",
-    marginTop: props.isMobile ? "-10%" : "",
+    // marginTop: props.isMobile ? "-10%" : "",
   };
   const imageOverlayMini = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
