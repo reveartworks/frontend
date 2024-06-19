@@ -436,7 +436,8 @@ export function Dashboard(props) {
                           JSON.parse(item.image1).image
                         })`,
                         backgroundPosition: "center",
-                        backgroundSize: "cover",
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
                         marginLeft: props.isMobile ? "1%" : "",
                       }}
                     >
