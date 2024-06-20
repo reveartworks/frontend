@@ -216,10 +216,12 @@ export function ViewArt(props) {
               ></Stages>
             </div>
             {loading ? (
-              <Loading
-                isMobile={props.isMobile}
-                isMobileLandscape={props.isMobileLandscape}
-              />
+              <div style={{ height: "100vh" }}>
+                <Loading
+                  isMobile={props.isMobile}
+                  isMobileLandscape={props.isMobileLandscape}
+                />
+              </div>
             ) : (
               <Container>
                 <div
@@ -237,6 +239,7 @@ export function ViewArt(props) {
                       display: "flex",
                       flexDirection: "column",
                       width: props.isMobileLandscape ? "50%" : "",
+                      backgroundColor: "white",
                     }}
                   >
                     <div

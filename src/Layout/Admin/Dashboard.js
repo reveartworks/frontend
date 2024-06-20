@@ -361,10 +361,12 @@ export function Dashboard(props) {
               </div>
             </div>
             {loading ? (
-              <Loading
-                isMobile={props.isMobile}
-                isMobileLandscape={props.isMobileLandscape}
-              />
+              <div style={{ height: "100vh" }}>
+                <Loading
+                  isMobile={props.isMobile}
+                  isMobileLandscape={props.isMobileLandscape}
+                />
+              </div>
             ) : null}
             <div
               style={{
@@ -411,7 +413,13 @@ export function Dashboard(props) {
                 </div>
               ) : null}
               {images.map((item) => (
-                <div style={{ marginBottom: "2%", marginRight: "2%" }}>
+                <div
+                  style={{
+                    marginBottom: "2%",
+                    marginRight: "2%",
+                    backgroundColor: "white",
+                  }}
+                >
                   <Link
                     to={"/edit/" + item._id["$oid"]}
                     style={{ textDecoration: "none", color: "gray" }}

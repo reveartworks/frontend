@@ -528,10 +528,12 @@ export function ListArt(props) {
               </div>
             )}
             {loading ? (
-              <Loading
-                isMobile={props.isMobile}
-                isMobileLandscape={props.isMobileLandscape}
-              />
+              <div style={{ height: "100vh" }}>
+                <Loading
+                  isMobile={props.isMobile}
+                  isMobileLandscape={props.isMobileLandscape}
+                />
+              </div>
             ) : null}
             {/* <Loading
               isMobile={props.isMobile}
@@ -553,7 +555,13 @@ export function ListArt(props) {
                 ? images.map((item) => (
                     // try{
 
-                    <div style={{ marginBottom: "2%", marginRight: "2%" }}>
+                    <div
+                      style={{
+                        marginBottom: "2%",
+                        marginRight: "2%",
+                        backgroundColor: "white",
+                      }}
+                    >
                       <Link
                         to={"/artDetails/" + item._id["$oid"]}
                         style={{ textDecoration: "none", color: "gray" }}
