@@ -17,8 +17,12 @@ import { Footer } from "../Component/Footer";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { apiRequest } from "../Util/axiosInstance";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Loading from "../Component/Loading";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
+import Typography from "@mui/material/Typography";
+
 export function ListArt(props) {
   const openArtPage = () => {
     window.location.href = "/viewartlist";
@@ -61,6 +65,7 @@ export function ListArt(props) {
   const [sortByOrder, setSortByOrder] = useState("none");
   const [anchorSortEl, setAnchorSortEl] = useState(null);
   const [showRating, setShowRating] = useState(true);
+  const [cover, setCover] = useState(true);
   const openSort = Boolean(anchorSortEl);
   //   const getSortedList = async (e, order) => {
   //     setShowRating(false);
@@ -221,6 +226,7 @@ export function ListArt(props) {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             height: props.isMobile ? "11vh" : "14vh",
+            minHeight: "80px",
           }}
         >
           {/* <img src={`data:image/png;base64,${image}`} /> */}&nbsp;
@@ -275,6 +281,29 @@ export function ListArt(props) {
                     </p>
                   </div>
                   <div style={{ display: "flex", flexDirection: "row" }}>
+                    <div style={{ marginTop: "-2%" }}>
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <Typography>Cover</Typography>
+                        <Switch
+                          defaultChecked
+                          // size="small"
+                          onChange={(e) => {
+                            setCover(!cover);
+                          }}
+                          style={{
+                            color: "rgba(31, 165, 141, 1)",
+                          }}
+                        />
+                      </Stack>
+                      {/* <FormGroup>
+                        <FormControlLabel
+
+                          control={ */}
+                      {/* } */}
+                      {/* label="Cover"
+                        /> */}
+                      {/* </FormGroup> */}
+                    </div>
                     <div style={{ width: "150px", textAlign: "center" }}>
                       Sort by:
                     </div>
@@ -417,30 +446,32 @@ export function ListArt(props) {
                     marginTop: "1%",
                   }}
                 >
-                  <div style={{ width: "80px", textAlign: "center" }}>
-                    Sort by:
-                  </div>
-                  <div
-                    style={{
-                      marginRight: "5%",
-                    }}
-                  >
-                    <button
-                      id="demo-positioned-button"
-                      onClick={handleSortClick}
-                      style={{
-                        color: "rgb(31,165,141,1)",
-                        backgroundColor: "white",
-                        width: "150px",
-                        height: "20px",
-                        borderRadius: "10px",
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        border: "1px solid rgb(31,165,141,1)",
-                        marginTop: "-2%",
-                      }}
-                    >
-                      {/* <div
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div style={{ width: "80px", textAlign: "center" }}>
+                        Sort by:
+                      </div>
+                      <div
+                        style={{
+                          marginRight: "5%",
+                        }}
+                      >
+                        <button
+                          id="demo-positioned-button"
+                          onClick={handleSortClick}
+                          style={{
+                            color: "rgb(31,165,141,1)",
+                            backgroundColor: "white",
+                            width: "130px",
+                            height: "20px",
+                            borderRadius: "10px",
+                            fontSize: "0.8rem",
+                            cursor: "pointer",
+                            border: "1px solid rgb(31,165,141,1)",
+                            marginTop: "-2%",
+                          }}
+                        >
+                          {/* <div
                       style={{
                         display: "flex",
                         flexDirection: "row",
@@ -454,79 +485,105 @@ export function ListArt(props) {
                         <KeyboardArrowDownIcon fontSize="medium" />
                       </div>
                     </div> */}
-                      {sortByLabel}
-                    </button>
-                    <Menu
-                      id="demo-positioned-menu"
-                      aria-labelledby="demo-positioned-button"
-                      anchorEl={anchorSortEl}
-                      open={openSort}
-                      onClose={handleSortClose}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
-                      }}
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
-                      }}
-                    >
-                      <MenuItem
-                        onClick={(e) => {
-                          setSortByLabel("None");
-                          setSortByOrder("none");
-                          // getSortedList(e, "none");
-                          // setImages(tempImages);
-                          sortImages("none");
-                        }}
-                      >
-                        None
-                      </MenuItem>
-                      <MenuItem
-                        onClick={(e) => {
-                          setSortByLabel("A to Z");
-                          setSortByOrder("nameAsc");
-                          // getSortedList(e, "nameAsc");
-                          sortImages("name", "asc");
-                        }}
-                      >
-                        A to Z
-                      </MenuItem>
-                      <MenuItem
-                        onClick={(e) => {
-                          setSortByLabel("Z to A");
-                          setSortByOrder("nameDesc");
-                          // getSortedList(e, "nameDesc");
-                          sortImages("name", "desc");
-                        }}
-                      >
-                        Z to A
-                      </MenuItem>
-                      <MenuItem
-                        onClick={(e) => {
-                          setSortByLabel("Rating: High to Low");
-                          setSortByOrder("ratingDesc");
-                          // getSortedList(e, "ratingDesc");
-                          sortImages("rating", "desc");
-                        }}
-                      >
-                        Rating: High to Low
-                      </MenuItem>
-                      <MenuItem
-                        onClick={(e) => {
-                          setSortByLabel("Rating: Low to High");
-                          setSortByOrder("ratingAsc");
-                          // getSortedList(e, "ratingAsc");
-                          sortImages("rating", "asc");
-                        }}
-                      >
-                        Rating: Low to High
-                      </MenuItem>
-                    </Menu>
+                          {sortByLabel}
+                        </button>
+                        <Menu
+                          id="demo-positioned-menu"
+                          aria-labelledby="demo-positioned-button"
+                          anchorEl={anchorSortEl}
+                          open={openSort}
+                          onClose={handleSortClose}
+                          anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "left",
+                          }}
+                          transformOrigin={{
+                            vertical: "top",
+                            horizontal: "left",
+                          }}
+                        >
+                          <MenuItem
+                            onClick={(e) => {
+                              setSortByLabel("None");
+                              setSortByOrder("none");
+                              // getSortedList(e, "none");
+                              // setImages(tempImages);
+                              sortImages("none");
+                            }}
+                          >
+                            None
+                          </MenuItem>
+                          <MenuItem
+                            onClick={(e) => {
+                              setSortByLabel("A to Z");
+                              setSortByOrder("nameAsc");
+                              // getSortedList(e, "nameAsc");
+                              sortImages("name", "asc");
+                            }}
+                          >
+                            A to Z
+                          </MenuItem>
+                          <MenuItem
+                            onClick={(e) => {
+                              setSortByLabel("Z to A");
+                              setSortByOrder("nameDesc");
+                              // getSortedList(e, "nameDesc");
+                              sortImages("name", "desc");
+                            }}
+                          >
+                            Z to A
+                          </MenuItem>
+                          <MenuItem
+                            onClick={(e) => {
+                              setSortByLabel("Rating: High to Low");
+                              setSortByOrder("ratingDesc");
+                              // getSortedList(e, "ratingDesc");
+                              sortImages("rating", "desc");
+                            }}
+                          >
+                            Rating: High to Low
+                          </MenuItem>
+                          <MenuItem
+                            onClick={(e) => {
+                              setSortByLabel("Rating: Low to High");
+                              setSortByOrder("ratingAsc");
+                              // getSortedList(e, "ratingAsc");
+                              sortImages("rating", "asc");
+                            }}
+                          >
+                            Rating: Low to High
+                          </MenuItem>
+                        </Menu>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             )}
+            {props.isMobile ? (
+              <div
+                style={{
+                  // marginTop: "-1.3%",
+                  // paddingLeft: "5%",
+                  margin: "auto",
+                  marginBottom: "5%",
+                }}
+              >
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Typography style={{ fontSize: "0.8rem" }}>Cover</Typography>
+                  <Switch
+                    defaultChecked
+                    size="small"
+                    onChange={(e) => {
+                      setCover(!cover);
+                    }}
+                    style={{
+                      color: "rgba(31, 165, 141, 1)",
+                    }}
+                  />
+                </Stack>
+              </div>
+            ) : null}
             {loading ? (
               <div style={{ height: "100vh" }}>
                 <Loading
@@ -577,7 +634,7 @@ export function ListArt(props) {
                               JSON.parse(item.image1).image
                             })`,
                             backgroundPosition: "center",
-                            backgroundSize: "contain",
+                            backgroundSize: cover ? "cover" : "contain",
                             backgroundRepeat: "no-repeat",
                             marginLeft: props.isMobile ? "0%" : "",
                           }}

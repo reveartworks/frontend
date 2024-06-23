@@ -191,6 +191,7 @@ export function ViewArt(props) {
             backgroundSize: "cover",
             backgroundPosition: "center",
             height: props.isMobile ? "11vh" : "14vh",
+            minHeight: "80px",
           }}
         >
           {/* <img src={`data:image/png;base64,${image}`} /> */}&nbsp;

@@ -148,6 +148,14 @@ HTML {
 .css-jkscjg {
   color: rgba(31, 165, 141, 1) !important;
 }
+.MuiSwitch-track {
+  background-color: #19d298 !important;
+}
+
+/* .MuiFormControlLabel-label {
+  font-size: 0.8rem !important;
+  padding-top: 0.4% !important;
+} */
 .right {
   float: right;
 }
