@@ -440,7 +440,7 @@ export function ViewArt(props) {
                         </p>
                         <div
                           style={{
-                            width: "50px",
+                            width: "100px",
                             height: "30px",
                             border: "1px solid rgb(31,165,141,1)",
                             color: "black",
