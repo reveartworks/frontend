@@ -107,12 +107,14 @@ export function Home(props) {
         var slImgs = [];
         var slInd = [];
         for (var image in result) {
-          corImgs.push(JSON.parse(result[image].image1).image);
-          slImgs.push({
-            name: result[image].name,
-            size: result[image].height + "ft x " + result[image].width + "ft",
-          });
-          slInd.push(image);
+          if (image < 3) {
+            corImgs.push(JSON.parse(result[image].image1).image);
+            slImgs.push({
+              name: result[image].name,
+              size: result[image].height + "ft x " + result[image].width + "ft",
+            });
+            slInd.push(image);
+          }
           //   console.log();
         }
         // console.log(typeof result);
