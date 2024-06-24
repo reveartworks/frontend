@@ -281,7 +281,7 @@ export function ListArt(props) {
                     </p>
                   </div>
                   <div style={{ display: "flex", flexDirection: "row" }}>
-                    <div style={{ marginTop: "-2%" }}>
+                    {/* <div style={{ marginTop: "-2%" }}>
                       <Stack direction="row" spacing={1} alignItems="center">
                         <Typography>Cover</Typography>
                         <Switch
@@ -295,15 +295,7 @@ export function ListArt(props) {
                           }}
                         />
                       </Stack>
-                      {/* <FormGroup>
-                        <FormControlLabel
-
-                          control={ */}
-                      {/* } */}
-                      {/* label="Cover"
-                        /> */}
-                      {/* </FormGroup> */}
-                    </div>
+                    </div> */}
                     <div style={{ width: "150px", textAlign: "center" }}>
                       Sort by:
                     </div>
@@ -560,11 +552,9 @@ export function ListArt(props) {
                 </div>
               </div>
             )}
-            {props.isMobile ? (
+            {/* {props.isMobile ? (
               <div
                 style={{
-                  // marginTop: "-1.3%",
-                  // paddingLeft: "5%",
                   margin: "auto",
                   marginBottom: "5%",
                 }}
@@ -583,7 +573,7 @@ export function ListArt(props) {
                   />
                 </Stack>
               </div>
-            ) : null}
+            ) : null} */}
             {loading ? (
               <div style={{ height: "100vh" }}>
                 <Loading

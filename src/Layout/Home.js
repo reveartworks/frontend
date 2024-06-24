@@ -173,7 +173,7 @@ export function Home(props) {
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       // backgroundRepeat: "",
-                      height: "100vh",
+                      height: props.isMobile ? "30vh" : "100vh",
                     }}
                   >
                     &nbsp;
@@ -190,7 +190,7 @@ export function Home(props) {
               marginTop: props.isMobileLandscape
                 ? "-30%"
                 : props.isMobile
-                ? "-60%"
+                ? "-15%"
                 : "-18%",
               position: "absolute",
               // marginLeft: "41.5%",
@@ -200,27 +200,31 @@ export function Home(props) {
           >
             <div className="center">
               {/* <Link to="/viewartlist"> */}
-              <p
-                style={{
-                  fontSize: "2rem",
-                  color: "white",
-                  marginBottom: "0",
-                  textTransform: "capitalize",
-                  fontFamily: "serif",
-                }}
-              >
-                {slideImages[activeSlide].name}
-              </p>
-              <p
-                style={{
-                  fontSize: "1rem",
-                  color: "white",
-                  marginTop: "1%",
-                  marginBotton: "2%",
-                }}
-              >
-                {slideImages[activeSlide].size}
-              </p>
+              {!props.isMobile ? (
+                <>
+                  <p
+                    style={{
+                      fontSize: "2rem",
+                      color: "white",
+                      marginBottom: "0",
+                      textTransform: "capitalize",
+                      fontFamily: "serif",
+                    }}
+                  >
+                    {slideImages[activeSlide].name}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "1rem",
+                      color: "white",
+                      marginTop: "1%",
+                      marginBotton: "2%",
+                    }}
+                  >
+                    {slideImages[activeSlide].size}
+                  </p>
+                </>
+              ) : null}
               <div
                 style={{
                   width: "100%",
@@ -265,14 +269,14 @@ export function Home(props) {
                 style={{
                   color: "black",
                   //   border: "1px solid black",
-                  borderRadius: "20px",
+                  borderRadius: props.isMobile ? "10px" : "20px",
 
-                  height: "30px",
-                  width: "150px",
+                  height: props.isMobile ? "20px" : "30px",
+                  width: props.isMobile ? "120px" : "150px",
                   backgroundColor: "white",
                   border: "1px solid white",
-                  fontSize: "0.7rem",
-                  className: "bold",
+                  fontSize: props.isMobile ? "0.5rem" : "0.7rem",
+                  // className: "bold",
                   marginTop: "3%",
                   cursor: "pointer",
                 }}

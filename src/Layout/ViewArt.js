@@ -89,7 +89,7 @@ export function ViewArt(props) {
   const [comments, setComments] = useState("");
   const [contacted, setContacted] = useState(false);
   const [contactError, setContactError] = useState(false);
-  const [expandImage, setExpandImage] = useState(true);
+  const [expandImage, setExpandImage] = useState(false);
 
   function alerter(field) {
     alert("Please provide your " + field);
