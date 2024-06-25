@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import logo from "../Images/logo.png";
+import logo from "../Images/contactLogo0.png";
 import bgImage from "../Images/backgroundLogo.png";
 import { useState, useEffect } from "react";
 import { Image } from "./image";
@@ -69,10 +69,11 @@ export function Home(props) {
     textAlign: "left",
     left: "12px",
     color: "white",
-    fontSize: "1rem",
+    fontSize: props.isMobile ? "0.8rem" : "1rem",
     marginLeft: "5%",
-    maxWidth: props.isMobile ? "60%" : "80%",
-    maxHeight: "8rem",
+    maxWidth: props.isMobile ? "78%" : "80%",
+    maxHeight: props.isMobile ? "40px" : "8rem",
+    minHeight: props.isMobile ? "40px" : "",
     fontFamily: "serif",
     overflow: "hidden",
   };
@@ -343,8 +344,8 @@ export function Home(props) {
                     borderRadius: "20px",
                     backgroundSize: "contain",
                     backgroundPosition: "center",
-                    height: "30rem",
-                    minHeight: "20rem",
+                    height: props.isMobile ? "260px" : "30rem",
+                    minHeight: props.isMobile ? "60px" : "20rem",
                     cursor: "pointer",
                   }}
                   onClick={(e) => {
@@ -359,10 +360,20 @@ export function Home(props) {
                       flexDirection: "column",
                     }}
                   >
-                    <div style={{ width: "100%", minHeight: "10rem" }}>
+                    <div
+                      style={{
+                        width: "100%",
+                        minHeight: props.isMobile ? "70px" : "10rem",
+                      }}
+                    >
                       &nbsp;
                     </div>
-                    <div style={{ width: "100%", minHeight: "10rem" }}>
+                    <div
+                      style={{
+                        width: "100%",
+                        minHeight: props.isMobile ? "70px" : "10rem",
+                      }}
+                    >
                       &nbsp;
                     </div>
                     <div
@@ -401,14 +412,15 @@ export function Home(props) {
                   style={{
                     width: "100%",
                     display: "flex",
-                    flexDirection: props.isMobile ? "column" : "row",
+                    flexDirection: props.isMobile ? "row" : "row",
                     justifyContent: "space-between",
                     marginBottom: "2%",
+                    height: props.isMobile ? "200px" : "",
                   }}
                 >
                   <div
                     style={{
-                      width: props.isMobile ? "100%" : "49%",
+                      width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[1].image1).image
@@ -416,8 +428,8 @@ export function Home(props) {
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      height: "30rem",
-                      minHeight: "20rem",
+                      height: props.isMobile ? "" : "30rem",
+                      minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
                     }}
                     onClick={(e) => {
@@ -432,10 +444,20 @@ export function Home(props) {
                         flexDirection: "column",
                       }}
                     >
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
                       <div
@@ -454,10 +476,12 @@ export function Home(props) {
                             <p style={{ textTransform: "capitalize" }}>
                               {gridImages[1].name}
                             </p>
-                            <p>
-                              Acrylic on canvas - {gridImages[1].height}ft x{" "}
-                              {gridImages[1].width}ft
-                            </p>
+                            {!props.isMobile ? (
+                              <p>
+                                Acrylic on canvas - {gridImages[1].height}ft x{" "}
+                                {gridImages[1].width}ft
+                              </p>
+                            ) : null}
                           </div>
                         </div>
                         {/* <div style={{ width: "25%" }}></div> */}
@@ -468,7 +492,7 @@ export function Home(props) {
                   </div>
                   <div
                     style={{
-                      width: props.isMobile ? "100%" : "49%",
+                      width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[2].image1).image
@@ -476,8 +500,8 @@ export function Home(props) {
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      height: "30rem",
-                      minHeight: "20rem",
+                      height: props.isMobile ? "" : "30rem",
+                      minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
                     }}
                     onClick={(e) => {
@@ -492,10 +516,20 @@ export function Home(props) {
                         flexDirection: "column",
                       }}
                     >
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
                       <div
@@ -514,10 +548,12 @@ export function Home(props) {
                             <p style={{ textTransform: "capitalize" }}>
                               {gridImages[2].name}
                             </p>
-                            <p>
-                              Acrylic on canvas - {gridImages[2].height}ft x{" "}
-                              {gridImages[2].width}ft
-                            </p>
+                            {!props.isMobile ? (
+                              <p>
+                                Acrylic on canvas - {gridImages[2].height}ft x{" "}
+                                {gridImages[2].width}ft
+                              </p>
+                            ) : null}
                           </div>
                         </div>
                         {/* <div style={{ width: "25%" }}></div> */}
@@ -537,8 +573,8 @@ export function Home(props) {
                     borderRadius: "20px",
                     backgroundSize: "contain",
                     backgroundPosition: "center",
-                    height: "30rem",
-                    minHeight: "20rem",
+                    height: props.isMobile ? "260px" : "30rem",
+                    minHeight: props.isMobile ? "60px" : "20rem",
                     cursor: "pointer",
                   }}
                   onClick={(e) => {
@@ -560,10 +596,20 @@ export function Home(props) {
                       flexDirection: "column",
                     }}
                   >
-                    <div style={{ width: "100%", minHeight: "10rem" }}>
+                    <div
+                      style={{
+                        width: "100%",
+                        minHeight: props.isMobile ? "70px" : "10rem",
+                      }}
+                    >
                       &nbsp;
                     </div>
-                    <div style={{ width: "100%", minHeight: "10rem" }}>
+                    <div
+                      style={{
+                        width: "100%",
+                        minHeight: props.isMobile ? "70px" : "10rem",
+                      }}
+                    >
                       &nbsp;
                     </div>
                     <div
@@ -599,14 +645,15 @@ export function Home(props) {
                   style={{
                     width: "100%",
                     display: "flex",
-                    flexDirection: props.isMobile ? "column" : "row",
+                    flexDirection: props.isMobile ? "row" : "row",
                     justifyContent: "space-between",
                     marginBottom: "2%",
+                    height: props.isMobile ? "200px" : "",
                   }}
                 >
                   <div
                     style={{
-                      width: props.isMobile ? "100%" : "49%",
+                      width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[4].image1).image
@@ -614,8 +661,8 @@ export function Home(props) {
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      height: "30rem",
-                      minHeight: "20rem",
+                      height: props.isMobile ? "" : "30rem",
+                      minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
                     }}
                     onClick={(e) => {
@@ -630,10 +677,20 @@ export function Home(props) {
                         flexDirection: "column",
                       }}
                     >
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
                       <div
@@ -652,10 +709,12 @@ export function Home(props) {
                             <p style={{ textTransform: "capitalize" }}>
                               {gridImages[4].name}
                             </p>
-                            <p>
-                              Acrylic on canvas - {gridImages[4].height}ft x{" "}
-                              {gridImages[4].width}ft
-                            </p>
+                            {!props.isMobile ? (
+                              <p>
+                                Acrylic on canvas - {gridImages[4].height}ft x{" "}
+                                {gridImages[4].width}ft
+                              </p>
+                            ) : null}
                           </div>
                         </div>
                         {/* <div style={{ width: "25%" }}></div> */}
@@ -666,7 +725,7 @@ export function Home(props) {
                   </div>
                   <div
                     style={{
-                      width: props.isMobile ? "100%" : "49%",
+                      width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
                       backgroundImage: `url(${
                         JSON.parse(gridImages[5].image1).image
@@ -674,8 +733,8 @@ export function Home(props) {
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      height: "30rem",
-                      minHeight: "20rem",
+                      height: props.isMobile ? "" : "30rem",
+                      minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
                     }}
                     onClick={(e) => {
@@ -690,10 +749,20 @@ export function Home(props) {
                         flexDirection: "column",
                       }}
                     >
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
-                      <div style={{ width: "100%", minHeight: "10rem" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          minHeight: props.isMobile ? "60px" : "10rem",
+                        }}
+                      >
                         &nbsp;
                       </div>
                       <div
@@ -712,10 +781,12 @@ export function Home(props) {
                             <p style={{ textTransform: "capitalize" }}>
                               {gridImages[5].name}
                             </p>
-                            <p>
-                              Acrylic on canvas - {gridImages[5].height}ft x{" "}
-                              {gridImages[5].width}ft
-                            </p>
+                            {!props.isMobile ? (
+                              <p>
+                                Acrylic on canvas - {gridImages[5].height}ft x{" "}
+                                {gridImages[5].width}ft
+                              </p>
+                            ) : null}
                           </div>
                         </div>
                         {/* <div style={{ width: "25%" }}></div> */}
