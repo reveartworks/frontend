@@ -176,7 +176,7 @@ export function Home(props) {
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       // backgroundRepeat: "",
-                      height: props.isMobile ? "60vh" : "100vh",
+                      height: props.isMobile ? "30vh" : "100vh",
                     }}
                   >
                     &nbsp;
@@ -193,7 +193,8 @@ export function Home(props) {
               marginTop: props.isMobileLandscape
                 ? "-30%"
                 : props.isMobile
-                ? "-37%"
+                ? // ? "-37%"
+                  "-15%"
                 : "-18%",
               position: "absolute",
               // marginLeft: "41.5%",
@@ -203,31 +204,31 @@ export function Home(props) {
           >
             <div className="center">
               {/* <Link to="/viewartlist"> */}
-              {/* {!props.isMobile ? ( */}
-              <>
-                <p
-                  style={{
-                    fontSize: props.isMobile ? "1.5rem" : "2rem",
-                    color: "white",
-                    marginBottom: "0",
-                    textTransform: "capitalize",
-                    fontFamily: "serif",
-                  }}
-                >
-                  {slideImages[activeSlide].name}
-                </p>
-                <p
-                  style={{
-                    fontSize: props.isMobile ? "0.8rem" : "1rem",
-                    color: "white",
-                    marginTop: "0%",
-                    marginBotton: "2%",
-                  }}
-                >
-                  {slideImages[activeSlide].size}
-                </p>
-              </>
-              {/* ) : null} */}
+              {!props.isMobile ? (
+                <>
+                  <p
+                    style={{
+                      fontSize: props.isMobile ? "1.5rem" : "2rem",
+                      color: "white",
+                      marginBottom: "0",
+                      textTransform: "capitalize",
+                      fontFamily: "serif",
+                    }}
+                  >
+                    {slideImages[activeSlide].name}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: props.isMobile ? "0.8rem" : "1rem",
+                      color: "white",
+                      marginTop: "0%",
+                      marginBotton: "2%",
+                    }}
+                  >
+                    {slideImages[activeSlide].size}
+                  </p>
+                </>
+              ) : null}
               <div
                 style={{
                   width: "100%",
@@ -306,7 +307,7 @@ export function Home(props) {
                 ? "1.05rem"
                 : "3rem",
               padding: props.isMobile ? "5%" : "",
-              marginBottom: props.isMobile ? "20%" : "",
+              // marginBottom: props.isMobile ? "20%" : "",
               paddingTop: props.isMobile ? "2%" : "",
             }}
           >
