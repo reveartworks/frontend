@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import logo from "../Images/logo.png";
-import bgImage from "../Images/backgroundImg.svg";
+import bgImage from "../Images/backgroundLogo.png";
 import { useState, useEffect } from "react";
 import { Image } from "./image";
 
@@ -175,7 +175,7 @@ export function Home(props) {
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       // backgroundRepeat: "",
-                      height: props.isMobile ? "30vh" : "100vh",
+                      height: props.isMobile ? "60vh" : "100vh",
                     }}
                   >
                     &nbsp;
@@ -192,7 +192,7 @@ export function Home(props) {
               marginTop: props.isMobileLandscape
                 ? "-30%"
                 : props.isMobile
-                ? "-15%"
+                ? "-37%"
                 : "-18%",
               position: "absolute",
               // marginLeft: "41.5%",
@@ -202,31 +202,31 @@ export function Home(props) {
           >
             <div className="center">
               {/* <Link to="/viewartlist"> */}
-              {!props.isMobile ? (
-                <>
-                  <p
-                    style={{
-                      fontSize: "2rem",
-                      color: "white",
-                      marginBottom: "0",
-                      textTransform: "capitalize",
-                      fontFamily: "serif",
-                    }}
-                  >
-                    {slideImages[activeSlide].name}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "1rem",
-                      color: "white",
-                      marginTop: "1%",
-                      marginBotton: "2%",
-                    }}
-                  >
-                    {slideImages[activeSlide].size}
-                  </p>
-                </>
-              ) : null}
+              {/* {!props.isMobile ? ( */}
+              <>
+                <p
+                  style={{
+                    fontSize: props.isMobile ? "1.5rem" : "2rem",
+                    color: "white",
+                    marginBottom: "0",
+                    textTransform: "capitalize",
+                    fontFamily: "serif",
+                  }}
+                >
+                  {slideImages[activeSlide].name}
+                </p>
+                <p
+                  style={{
+                    fontSize: props.isMobile ? "0.8rem" : "1rem",
+                    color: "white",
+                    marginTop: "0%",
+                    marginBotton: "2%",
+                  }}
+                >
+                  {slideImages[activeSlide].size}
+                </p>
+              </>
+              {/* ) : null} */}
               <div
                 style={{
                   width: "100%",
@@ -242,6 +242,7 @@ export function Home(props) {
                     flexDirection: "row",
                     width: "100px",
                     justifyContent: "space-evenly",
+                    // marginTop: "-1%",
                   }}
                 >
                   {/* <p> */}
@@ -250,7 +251,7 @@ export function Home(props) {
                       style={{
                         width: "5px",
                         border: "2px solid white",
-                        lineHeight: "0.3rem",
+                        lineHeight: props.isMobile ? "0.33rem" : "0.3rem",
                         borderRadius: "50%",
                         backgroundColor:
                           item == activeSlide ? "white" : "transparent",
@@ -271,13 +272,14 @@ export function Home(props) {
                 style={{
                   color: "black",
                   //   border: "1px solid black",
-                  borderRadius: props.isMobile ? "10px" : "20px",
+                  borderRadius: props.isMobile ? "12px" : "20px",
 
-                  height: props.isMobile ? "20px" : "30px",
-                  width: props.isMobile ? "120px" : "150px",
+                  height: props.isMobile ? "25px" : "30px",
+                  width: props.isMobile ? "130px" : "150px",
                   backgroundColor: "white",
                   border: "1px solid white",
-                  fontSize: props.isMobile ? "0.5rem" : "0.7rem",
+                  fontSize: props.isMobile ? "0.6rem" : "0.7rem",
+                  fontWeight: "600",
                   // className: "bold",
                   marginTop: "3%",
                   cursor: "pointer",
@@ -300,8 +302,11 @@ export function Home(props) {
               fontSize: props.isMobileLandscape
                 ? "2rem"
                 : props.isMobile
-                ? "1.5rem"
+                ? "1.05rem"
                 : "3rem",
+              padding: props.isMobile ? "5%" : "",
+              marginBottom: props.isMobile ? "20%" : "",
+              paddingTop: props.isMobile ? "2%" : "",
             }}
           >
             Anwar is a canvas storyteller, capturing the essence of his thoughts

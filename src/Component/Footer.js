@@ -1,5 +1,6 @@
 import { Button, Container, Grid, List, ListItem, Paper } from "@mui/material";
 import logoFooter from "../Images/logoFooter.png";
+import footerLogo from "../Images/headerLogo.png";
 import * as React from "react";
 import xLogo from "../Images/x.png";
 import fbLogo from "../Images/fb.png";
@@ -9,7 +10,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
-import contactLogo from "../Images/contactLogo.png";
+import contactLogo from "../Images/contactLogo0.png";
 import { useState, useEffect } from "react";
 import { apiRequest } from "../Util/axiosInstance";
 
@@ -91,13 +92,14 @@ export function Footer(props) {
         >
           <div style={{ maxWidth: "60%" }}>
             <Link to="/">
-              <img src={logoFooter} />
+              <img src={footerLogo} />
             </Link>
             <p
               className="text17"
               style={{
                 fontSize: "2rem",
                 marginBotton: "0px",
+                marginTop: "0",
               }}
             >
               Let's Talk

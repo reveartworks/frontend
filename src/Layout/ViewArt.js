@@ -3,8 +3,8 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
-import bgImage from "../Images/backgroundImg.svg";
-import contactLogo from "../Images/contactLogo.png";
+import bgImage from "../Images/backgroundLogo.png";
+import contactLogo from "../Images/contactLogo0.png";
 
 import CloseIcon from "@mui/icons-material/Close";
 import { useState, useEffect } from "react";

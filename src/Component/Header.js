@@ -3,6 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import logoFooter from "../Images/logoFooter.png";
+import headerLogo from "../Images/headerLogo.png";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import burger from "../Images/burger.png";
@@ -71,13 +72,14 @@ export function Header(props) {
         >
           <Link to="/">
             <img
-              src={logoFooter}
+              src={headerLogo}
               style={{
                 height: props.isMobileLandscape
                   ? "50%"
                   : props.isMobile
-                  ? "80%"
-                  : "100%",
+                  ? "70%"
+                  : "90%",
+                marginTop: "-3%",
               }}
             />
           </Link>
@@ -102,6 +104,7 @@ export function Header(props) {
                     : props.isMobile
                     ? "80%"
                     : "100%",
+                  marginTop: "20%",
                 }}
               ></img>
             </Button>

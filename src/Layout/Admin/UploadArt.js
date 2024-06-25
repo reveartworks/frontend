@@ -8,7 +8,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import bgImage from "../../Images/backgroundImg.svg";
+import bgImage from "../../Images/backgroundLogo.png";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 

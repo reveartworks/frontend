@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import bgImage from "../Images/backgroundImg.svg";
+import bgImage from "../Images/backgroundLogo.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";

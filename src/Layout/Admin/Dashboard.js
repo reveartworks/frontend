@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 
-import bgImage from "../../Images/backgroundImg.svg";
+import bgImage from "../../Images/backgroundLogo.png";
 import { useState, useEffect } from "react";
 import { Image } from "../image";
 import addImageIcon from "../../Images/addImage.png";
