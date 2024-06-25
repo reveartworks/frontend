@@ -499,9 +499,17 @@ export function ViewArt(props) {
                           }}
                         >
                           <a
-                            href={data.nftUrl ? data.nftUrl : ""}
-                            target="_blank"
+                            // href={data.nftUrl ? data.nftUrl : ""}
+                            // target="_blank"
                             style={{ textDecoration: "none" }}
+                            // disabled={!data.nftUrl ? "disabled" : ""}
+                            onClick={(e) => {
+                              if (data.nftUrl) {
+                                window.open(data.nftUrl, "_blank").focus();
+                              } else {
+                                alert("NFT Comming Soon..");
+                              }
+                            }}
                           >
                             <div style={{ margin: "auto" }}>NFT</div>
                           </a>
