@@ -46,6 +46,7 @@ export function UploadArt(props) {
 
   const [active, setActive] = useState(true);
   const [artworkName, setArtworkName] = useState("");
+  const [artworkNfturl, setArtworkNfturl] = useState("");
   const [rating, setRating] = useState();
 
   const [description, setDescription] = useState("");
@@ -98,6 +99,7 @@ export function UploadArt(props) {
     data.inCorousel = inCorousel;
     data.inHomeGrid = inHomeGrid;
     data.description = description;
+    data.nftUrl = artworkNfturl;
     // console.log(data);
 
     try {
@@ -153,6 +155,8 @@ export function UploadArt(props) {
     data.inCorousel = inCorousel;
     data.inHomeGrid = inHomeGrid;
     data.description = description;
+    data.nftUrl = artworkNfturl;
+
     // console.log(data);
 
     try {
@@ -182,6 +186,7 @@ export function UploadArt(props) {
           setArtworkName(result.name ? result.name : "");
           setRating(result.rating ? parseFloat(result.rating) : 0);
           setDescription(result.description ? result.description : "");
+          setArtworkNfturl(result.nftUrl ? result.nftUrl : "");
           setInCorousel(result.inCorousel ? result.inCorousel : false);
           setInHomeGrid(result.inHomeGrid ? result.inHomeGrid : false);
           setHeight(result.height ? parseFloat(result.height) : 0);
@@ -675,8 +680,19 @@ export function UploadArt(props) {
                       </FormControl>
                     </div>
                   </div>
-                  {/* <br />
-                  <br /> */}
+                  <br />
+                  <br />
+                  <FormControl required fullWidth>
+                    <TextField
+                      name="nftUrl"
+                      value={artworkNfturl}
+                      onInput={(e) => {
+                        setArtworkNfturl(e.target.value);
+                      }}
+                      label="NFT Link"
+                      type="text"
+                    />
+                  </FormControl>
 
                   <FormControl required fullWidth>
                     {/* <Textarea

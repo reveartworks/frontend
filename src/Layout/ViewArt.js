@@ -458,23 +458,55 @@ export function ViewArt(props) {
                           </div>
                         </div>
                       </div>
-
-                      <button
-                        onClick={handleOpen}
+                      <div
                         style={{
-                          color: "white",
-                          backgroundColor: "rgb(31,165,141,1)",
-                          width: "270px",
-                          height: "50px",
-                          borderRadius: "25px",
-                          border: "none",
-                          marginTop: "5%",
-                          fontSize: "1.1rem",
-                          cursor: "pointer",
+                          display: "flex",
+                          flexDirection: props.isMobile ? "column" : "row",
+                          alignItems: "center",
                         }}
                       >
-                        Contact Us For Purchase
-                      </button>
+                        <div style={{ marginRight: "5%" }}>
+                          <button
+                            onClick={handleOpen}
+                            style={{
+                              color: "white",
+                              backgroundColor: "rgb(31,165,141,1)",
+                              width: "270px",
+                              height: "50px",
+                              borderRadius: "25px",
+                              border: "none",
+                              marginTop: "5%",
+                              fontSize: "1.1rem",
+                              cursor: "pointer",
+                            }}
+                          >
+                            Contact Us For Purchase
+                          </button>
+                        </div>
+                        <div
+                          style={{
+                            width: "80px",
+                            height: "50px",
+                            border: "1px solid rgb(31,165,141,1)",
+                            color: "black",
+                            // backgroundColor: "rgb(31,165,141,1)",
+                            borderRadius: "25px",
+                            textAlign: "center",
+                            alignContent: "center",
+                            marginTop: "2%",
+                            fontSize: "0.8rem",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <a
+                            href={data.nftUrl ? data.nftUrl : ""}
+                            target="_blank"
+                            style={{ textDecoration: "none" }}
+                          >
+                            <div style={{ margin: "auto" }}>NFT</div>
+                          </a>
+                        </div>
+                      </div>
                       <Modal
                         open={open}
                         onClose={handleClose}

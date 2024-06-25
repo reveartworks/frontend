@@ -4,6 +4,12 @@ HTML {
   scroll-behavior: smooth;
 }
 
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit !important;
+}
 .swiper-pagination-bullet {
   background-color: transparent !important;
   border: 1px solid white !important;
