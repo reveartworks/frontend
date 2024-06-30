@@ -276,7 +276,7 @@ export function ViewArt(props) {
                       <AspectRatioIcon style={{ color: "gray", right: "0" }} />
                     )} */}
                     </div>
-                    {expandImage ? (
+                    {/* {expandImage ? (
                       <CloseFullscreenIcon
                         style={{
                           color: "white",
@@ -322,7 +322,7 @@ export function ViewArt(props) {
                           setExpandImage(true);
                         }}
                       />
-                    )}
+                    )} */}
                     <div
                       style={{
                         display: "flex",

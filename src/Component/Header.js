@@ -131,6 +131,13 @@ export function Header(props) {
               >
                 Home
               </MenuItem>
+              <MenuItem
+                onClick={(e) => {
+                  window.location.href = "/viewartlist";
+                }}
+              >
+                Gallery
+              </MenuItem>
               {!userLoggedIn ? (
                 <MenuItem
                   onClick={(e) => {

@@ -307,7 +307,7 @@ export function Home(props) {
                 ? "1.05rem"
                 : "3rem",
               padding: props.isMobile ? "5%" : "",
-              // marginBottom: props.isMobile ? "20%" : "",
+              paddingBottom: props.isMobile ? "0%" : "",
               paddingTop: props.isMobile ? "2%" : "",
             }}
           >
