@@ -1,24 +1,13 @@
 import { Button, Container, Grid, List, ListItem, Paper } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Outlet, Link } from "react-router-dom";
-
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
 
-import bgImage from "../../Images/backgroundLogo.png";
 import { useState, useEffect } from "react";
 import { Image } from "../image";
-import addImageIcon from "../../Images/addImage.png";
 
 import { Header } from "../../Component/Header";
 
-import Stages from "../../Component/Stages";
 import { Footer } from "../../Component/Footer";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
 import { apiRequest } from "../../Util/axiosInstance";
 import Loading from "../../Component/Loading";
 
@@ -95,6 +84,42 @@ export function Analytics(props) {
                 style={{
                   borderRadius: "20px",
                   boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.top_artworks}
+                  title="Most Viewed Artworks"
+                  xKey="artworkName"
+                  yKey="accessCount"
+                />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.top_contact_artworks}
+                  title="Most Enquired for Purchase Artworks"
+                  xKey="artworkName"
+                  yKey="contactCount"
+                />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
                 }}
               >
                 <BarChartComponent
@@ -156,42 +181,6 @@ export function Analytics(props) {
                   title="Yearly Visits"
                   xKey="date"
                   yKey="visitCount"
-                />
-              </div>
-            )}
-          </Grid>
-          <Grid item xs={12} md={6}>
-            {metrics && (
-              <div
-                style={{
-                  borderRadius: "20px",
-                  boxShadow: "0px 0px 15px 10px lightgray",
-                  paddingTop: "10px",
-                }}
-              >
-                <BarChartComponent
-                  data={metrics.top_artworks}
-                  title="Top Artworks Access Count"
-                  xKey="artworkName"
-                  yKey="accessCount"
-                />
-              </div>
-            )}
-          </Grid>
-          <Grid item xs={12} md={6}>
-            {metrics && (
-              <div
-                style={{
-                  borderRadius: "20px",
-                  boxShadow: "0px 0px 15px 10px lightgray",
-                  paddingTop: "10px",
-                }}
-              >
-                <BarChartComponent
-                  data={metrics.top_contact_artworks}
-                  title="Top Contact Artworks"
-                  xKey="artworkName"
-                  yKey="contactCount"
                 />
               </div>
             )}

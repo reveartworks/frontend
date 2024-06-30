@@ -39,8 +39,8 @@ const BarChartComponent = ({ data, title, xKey, yKey }) => {
             interval={0}
             tick={{ fontSize: 12 }}
             height={
-              title == "Top Artworks Access Count" ||
-              title == "Top Contact Artworks"
+              title == "Most Viewed Artworks" ||
+              title == "Most Enquired for Purchase Artworks"
                 ? 150
                 : 100
             }
