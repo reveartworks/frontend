@@ -112,7 +112,7 @@ export function Home(props) {
             corImgs.push(JSON.parse(result[image].image1).image);
             slImgs.push({
               name: result[image].name,
-              size: result[image].height + "ft x " + result[image].width + "ft",
+              size: result[image].height + '" x ' + result[image].width + '"',
             });
             slInd.push(image);
           }
@@ -394,8 +394,8 @@ export function Home(props) {
                             {gridImages[0].name}
                           </p>
                           <p>
-                            Acrylic on canvas - {gridImages[0].height}ft x{" "}
-                            {gridImages[0].width}ft
+                            Acrylic on canvas - {gridImages[0].height}" x{" "}
+                            {gridImages[0].width}"
                           </p>
                         </div>
                       </div>
@@ -479,8 +479,8 @@ export function Home(props) {
                             </p>
                             {!props.isMobile ? (
                               <p>
-                                Acrylic on canvas - {gridImages[1].height}ft x{" "}
-                                {gridImages[1].width}ft
+                                Acrylic on canvas - {gridImages[1].height}" x{" "}
+                                {gridImages[1].width}"
                               </p>
                             ) : null}
                           </div>
@@ -551,8 +551,8 @@ export function Home(props) {
                             </p>
                             {!props.isMobile ? (
                               <p>
-                                Acrylic on canvas - {gridImages[2].height}ft x{" "}
-                                {gridImages[2].width}ft
+                                Acrylic on canvas - {gridImages[2].height}" x{" "}
+                                {gridImages[2].width}"
                               </p>
                             ) : null}
                           </div>
@@ -627,8 +627,8 @@ export function Home(props) {
                             {gridImages[3].name}
                           </p>
                           <p>
-                            Acrylic on canvas - {gridImages[3].height}ft x{" "}
-                            {gridImages[3].width}ft
+                            Acrylic on canvas - {gridImages[3].height}" x{" "}
+                            {gridImages[3].width}"
                           </p>
                         </div>
                       </div>
@@ -712,8 +712,8 @@ export function Home(props) {
                             </p>
                             {!props.isMobile ? (
                               <p>
-                                Acrylic on canvas - {gridImages[4].height}ft x{" "}
-                                {gridImages[4].width}ft
+                                Acrylic on canvas - {gridImages[4].height}" x{" "}
+                                {gridImages[4].width}"
                               </p>
                             ) : null}
                           </div>
@@ -784,8 +784,8 @@ export function Home(props) {
                             </p>
                             {!props.isMobile ? (
                               <p>
-                                Acrylic on canvas - {gridImages[5].height}ft x{" "}
-                                {gridImages[5].width}ft
+                                Acrylic on canvas - {gridImages[5].height}" x{" "}
+                                {gridImages[5].width}"
                               </p>
                             ) : null}
                           </div>

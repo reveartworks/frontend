@@ -273,7 +273,7 @@ export function Dashboard(props) {
                   marginTop: props.isMobile ? "-2%" : "",
                 }}
               >
-                <div style={{ width: "150px", textAlign: "center" }}>
+                <div style={{ width: "120px", textAlign: "center" }}>
                   Filter by:
                 </div>
                 <div

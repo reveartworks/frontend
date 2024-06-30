@@ -11,6 +11,7 @@ import { Dashboard } from "./Layout/Admin/Dashboard";
 import { ImageUploader } from "./Util/ImageUploader";
 import useWindowSize from "./Util/useWindowSize";
 import { useState } from "react";
+import { Analytics } from "./Layout/Admin/Analytics";
 function App() {
   const { width } = useWindowSize();
   const [isMobile, setIsMobile] = useState(width <= 500 ? true : false);
@@ -92,6 +93,15 @@ function App() {
               />
             }
             path="/converter"
+          />
+          <Route
+            element={
+              <Analytics
+                isMobile={isMobile}
+                isMobileLandscape={isMobileLandscape}
+              />
+            }
+            path="/analytics"
           />
         </Routes>
       </Router>

@@ -454,7 +454,7 @@ export function ViewArt(props) {
                           }}
                         >
                           <div style={{ margin: "auto" }}>
-                            {data.height}x{data.width}'
+                            {data.height}"x{data.width}"
                           </div>
                         </div>
                       </div>

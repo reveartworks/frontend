@@ -159,6 +159,15 @@ export function Header(props) {
               {userLoggedIn ? (
                 <MenuItem
                   onClick={(e) => {
+                    window.location.href = "/analytics";
+                  }}
+                >
+                  Site Analytics
+                </MenuItem>
+              ) : null}
+              {userLoggedIn ? (
+                <MenuItem
+                  onClick={(e) => {
                     sessionStorage.setItem("loggedIn", false);
                     setUserLoggedIn(false);
                     window.location.href = "/";

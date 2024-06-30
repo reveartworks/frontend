@@ -615,7 +615,7 @@ export function UploadArt(props) {
                           onInput={(e) => {
                             setHeight(e.target.value);
                           }}
-                          label="Height (ft)"
+                          label="Height (inches)"
                           type="number"
                         />
                       </FormControl>
@@ -631,7 +631,7 @@ export function UploadArt(props) {
                           onInput={(e) => {
                             setWidth(e.target.value);
                           }}
-                          label="Width (ft)"
+                          label="Width (inches)"
                           type="number"
                         />
                       </FormControl>
