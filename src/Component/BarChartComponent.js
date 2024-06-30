@@ -8,6 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
   LabelList,
+  Layer,
 } from "recharts";
 import { Container, Typography } from "@mui/material";
 
@@ -22,7 +23,11 @@ const BarChartComponent = ({ data, title, xKey, yKey }) => {
   };
   return (
     <Container>
-      <Typography variant="h6" align="center">
+      <Typography
+        variant="h6"
+        align="center"
+        style={{ marginTop: "20px", marginBottom: "20px" }}
+      >
         {title}
       </Typography>
       <ResponsiveContainer width="100%" height={400}>
@@ -33,7 +38,12 @@ const BarChartComponent = ({ data, title, xKey, yKey }) => {
             textAnchor="end"
             interval={0}
             tick={{ fontSize: 12 }}
-            height={160}
+            height={
+              title == "Top Artworks Access Count" ||
+              title == "Top Contact Artworks"
+                ? 150
+                : 100
+            }
           />
           {/* Ensure height prop is sufficient to avoid clipping */}
           <YAxis />

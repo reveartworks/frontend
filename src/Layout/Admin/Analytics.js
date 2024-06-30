@@ -87,68 +87,117 @@ export function Analytics(props) {
         </div>
       ) : null}
       <div style={{ marginBottom: "20px" }}>&nbsp;</div>
-      <Grid container spacing={3} justify="center">
-        <Grid item xs={12} md={6}>
-          {metrics && (
-            <BarChartComponent
-              data={metrics.daily}
-              title="Daily Visits"
-              xKey="date"
-              yKey="visitCount"
-            />
-          )}
+      <div style={{ width: "95%", margin: "auto" }}>
+        <Grid container spacing={3} justify="center">
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.daily}
+                  title="Daily Visits"
+                  xKey="date"
+                  yKey="visitCount"
+                />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.monthly}
+                  title="Monthly Visits"
+                  xKey="date"
+                  yKey="visitCount"
+                />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.quarterly}
+                  title="Quarterly Visits"
+                  xKey="date"
+                  yKey="visitCount"
+                />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.yearly}
+                  title="Yearly Visits"
+                  xKey="date"
+                  yKey="visitCount"
+                />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.top_artworks}
+                  title="Top Artworks Access Count"
+                  xKey="artworkName"
+                  yKey="accessCount"
+                />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {metrics && (
+              <div
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
+                }}
+              >
+                <BarChartComponent
+                  data={metrics.top_contact_artworks}
+                  title="Top Contact Artworks"
+                  xKey="artworkName"
+                  yKey="contactCount"
+                />
+              </div>
+            )}
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          {metrics && (
-            <BarChartComponent
-              data={metrics.monthly}
-              title="Monthly Visits"
-              xKey="date"
-              yKey="visitCount"
-            />
-          )}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {metrics && (
-            <BarChartComponent
-              data={metrics.quarterly}
-              title="Quarterly Visits"
-              xKey="date"
-              yKey="visitCount"
-            />
-          )}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {metrics && (
-            <BarChartComponent
-              data={metrics.yearly}
-              title="Yearly Visits"
-              xKey="date"
-              yKey="visitCount"
-            />
-          )}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {metrics && (
-            <BarChartComponent
-              data={metrics.top_artworks}
-              title="Top Artworks Access Count"
-              xKey="artworkName"
-              yKey="accessCount"
-            />
-          )}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {metrics && (
-            <BarChartComponent
-              data={metrics.top_contact_artworks}
-              title="Top Contact Artworks"
-              xKey="artworkName"
-              yKey="contactCount"
-            />
-          )}
-        </Grid>
-      </Grid>
+      </div>
       <div style={{ marginBottom: props.isMobile ? "20px" : "20px" }}>
         &nbsp;
       </div>
