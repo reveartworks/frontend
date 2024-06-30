@@ -120,6 +120,7 @@ export function Analytics(props) {
                 style={{
                   borderRadius: "20px",
                   boxShadow: "0px 0px 15px 10px lightgray",
+                  paddingTop: "10px",
                 }}
               >
                 <BarChartComponent
