@@ -224,7 +224,7 @@ export function ListArt(props) {
             //   backgroundColor: "#cccccc",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            backgroundPosition: "bottom",
             height: props.isMobile ? "11vh" : "14vh",
             minHeight: "80px",
           }}

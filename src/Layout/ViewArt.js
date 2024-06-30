@@ -89,6 +89,7 @@ export function ViewArt(props) {
   const [comments, setComments] = useState("");
   const [contacted, setContacted] = useState(false);
   const [contactError, setContactError] = useState(false);
+  const [ogImage, setOgImage] = useState(null);
   const [expandImage, setExpandImage] = useState(false);
 
   function alerter(field) {
@@ -155,6 +156,9 @@ export function ViewArt(props) {
         // console.log(typeof result);
         var imagesLen = 0;
         for (var im in result.images) {
+          if (im == 3) {
+            setOgImage(images[im]);
+          }
           if (images[im]) {
             imagesLen++;
           }
@@ -163,6 +167,10 @@ export function ViewArt(props) {
         setImages(result.images);
         // setImage(JSON.parse(result.image1).image);
         setActiveImage(result.images[0]);
+        setOgImage(result.images[3]);
+        setTimeout(() => {
+          if (result.images[3]) setImage(result.images[3]);
+        }, 200);
         setData(result);
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -262,7 +270,8 @@ export function ViewArt(props) {
                           : "550px",
                         backgroundImage: `url(${activeImage})`,
                         borderRadius: "10px",
-                        backgroundSize: expandImage ? "contain" : "cover",
+                        backgroundSize:
+                          activeImage == ogImage ? "contain" : "cover",
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
                         boxShadow: "0 0 25px 10px lightgray",
@@ -276,53 +285,58 @@ export function ViewArt(props) {
                       <AspectRatioIcon style={{ color: "gray", right: "0" }} />
                     )} */}
                     </div>
-                    {/* {expandImage ? (
-                      <CloseFullscreenIcon
-                        style={{
-                          color: "white",
-                          margin: "auto",
-                          marginTop: "10px",
-                          // marginTop: props.isMobile
-                          //   ? "95%"
-                          //   : props.isMobileLandscape
-                          //   ? "90%"
-                          //   : "85%",
-                          // marginLeft: "85%",
-                          padding: "15px",
-                          borderRadius: "50%",
-                          background: "rgba(137,241,222,1)",
-                          cursor: "pointer",
-                        }}
-                        onClick={(e) => {
-                          setExpandImage(false);
-                        }}
-                      />
-                    ) : (
-                      <OpenInFullIcon
-                        style={{
-                          color: "white",
-                          margin: "auto",
-                          marginTop: "10px",
-                          // marginTop: props.isMobile
-                          //   ? "75%"
-                          //   : props.isMobileLandscape
-                          //   ? "90%"
-                          //   : "85%",
-                          // marginLeft: props.isMobile
-                          //   ? "80%"
-                          //   : props.isMobileLandscape
-                          //   ? "85"
-                          //   : "85%",
-                          padding: "15px",
-                          borderRadius: "50%",
-                          background: "rgba(137,241,222,1)",
-                          cursor: "pointer",
-                        }}
-                        onClick={(e) => {
-                          setExpandImage(true);
-                        }}
-                      />
-                    )} */}
+                    {/* <div>{ogImage}</div> */}
+                    {/* <div>{activeImage}</div> */}
+                    <div>{ogImage == activeImage}</div>
+                    {/* {activeImage == ogImage ? (
+                      expandImage ? (
+                        <CloseFullscreenIcon
+                          style={{
+                            color: "white",
+                            margin: "auto",
+                            marginTop: "10px",
+                            // marginTop: props.isMobile
+                            //   ? "95%"
+                            //   : props.isMobileLandscape
+                            //   ? "90%"
+                            //   : "85%",
+                            // marginLeft: "85%",
+                            padding: "15px",
+                            borderRadius: "50%",
+                            background: "rgba(137,241,222,1)",
+                            cursor: "pointer",
+                          }}
+                          onClick={(e) => {
+                            setExpandImage(false);
+                          }}
+                        />
+                      ) : (
+                        <OpenInFullIcon
+                          style={{
+                            color: "white",
+                            margin: "auto",
+                            marginTop: "10px",
+                            // marginTop: props.isMobile
+                            //   ? "75%"
+                            //   : props.isMobileLandscape
+                            //   ? "90%"
+                            //   : "85%",
+                            // marginLeft: props.isMobile
+                            //   ? "80%"
+                            //   : props.isMobileLandscape
+                            //   ? "85"
+                            //   : "85%",
+                            padding: "15px",
+                            borderRadius: "50%",
+                            background: "rgba(137,241,222,1)",
+                            cursor: "pointer",
+                          }}
+                          onClick={(e) => {
+                            setExpandImage(true);
+                          }}
+                        />
+                      )
+                    ) : null} */}
                     <div
                       style={{
                         display: "flex",
