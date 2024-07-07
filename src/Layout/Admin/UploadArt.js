@@ -18,9 +18,7 @@ import uploadImageIcon from "../../Images/uploadImage.jpeg";
 import { Header } from "../../Component/Header";
 
 import { apiRequest } from "../../Util/axiosInstance";
-import { PropaneSharp } from "@mui/icons-material";
 import Loading from "../../Component/Loading";
-import compress from "compress-base64";
 import imageCompression from "browser-image-compression";
 
 export function UploadArt(props) {
@@ -227,8 +225,8 @@ export function UploadArt(props) {
       }
 
       const imageFile = event.target.files[0];
-      console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
-      console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+      // console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+      // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
 
       const options = {
         maxSizeMB: 0.2,
@@ -639,7 +637,8 @@ export function UploadArt(props) {
                   </div>
                   <br />
                   <br />
-                  <div
+                  {/* show in corousel and homegid check boxes  */}
+                  {/* <div
                     style={{
                       display: "flex",
                       flexDirection: "row",
@@ -679,7 +678,7 @@ export function UploadArt(props) {
                         />
                       </FormControl>
                     </div>
-                  </div>
+                  </div> */}
                   <br />
                   <br />
                   <FormControl required fullWidth>

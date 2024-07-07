@@ -138,7 +138,7 @@ export function Header(props) {
               >
                 Gallery
               </MenuItem>
-              {!userLoggedIn ? (
+              {/* {!userLoggedIn ? (
                 <MenuItem
                   onClick={(e) => {
                     window.location.href = "/adminlogin";
@@ -146,7 +146,7 @@ export function Header(props) {
                 >
                   Admin Login
                 </MenuItem>
-              ) : null}
+              ) : null} */}
               {userLoggedIn ? (
                 <MenuItem
                   onClick={(e) => {

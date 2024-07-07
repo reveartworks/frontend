@@ -1,6 +1,7 @@
 import { Button, Container, Grid, List, ListItem, Paper } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import Swiper from "swiper";
+import * as React from "react";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,6 +16,13 @@ import { Header } from "../Component/Header";
 import { Footer } from "../Component/Footer";
 import { apiRequest } from "../Util/axiosInstance";
 import Loading from "../Component/Loading";
+import EditIcon from "@mui/icons-material/Edit";
+
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { UploadHomeArt } from "./Admin/UploadHomeArt";
+
 function generateRandomSessionId(length = 32) {
   // Characters that can be used in the session ID
   const characters =
@@ -35,13 +43,35 @@ function generateRandomSessionId(length = 32) {
 
   return sessionId;
 }
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 export function Home(props) {
-  //   alert(props.isMobileLandscape);
-  //   alert(props.isMobile);
-  //   console.log(props);
+  const [adminLoggedIn, setAdminLoggedIn] = useState(
+    sessionStorage.getItem("loggedIn") == "false" ||
+      !sessionStorage.getItem("loggedIn")
+      ? false
+      : true
+  );
+
   if (!sessionStorage.getItem("artSessionId")) {
     sessionStorage.setItem("artSessionId", generateRandomSessionId());
   }
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [imageSection, setImageSection] = useState();
+  const [imageIndex, setImageIndex] = useState();
 
   const openArtPage = () => {
     window.location.href = "/viewartlist";
@@ -108,8 +138,8 @@ export function Home(props) {
         var slImgs = [];
         var slInd = [];
         for (var image in result) {
-          if (image < 3) {
-            corImgs.push(JSON.parse(result[image].image1).image);
+          if (image < 5) {
+            corImgs.push(result[image].image);
             slImgs.push({
               name: result[image].name,
               size: result[image].height + '" x ' + result[image].width + '"',
@@ -125,6 +155,7 @@ export function Home(props) {
         setSlideImages(slImgs);
 
         const result1 = await apiRequest("GET", "/homeGridDocuments"); // Replace with your API endpoint
+        console.log(result1);
         setGridImages(result1);
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -145,6 +176,20 @@ export function Home(props) {
         isMobile={props.isMobile}
         isMobileLandscape={props.isMobileLandscape}
       ></Header>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <UploadHomeArt
+          handleClose={handleClose}
+          imageSection={imageSection}
+          imageIndex={imageIndex}
+          isMobile={props.isMobile}
+          isMobileLandscape={props.isMobileLandscape}
+        />
+      </Modal>
       {corouselImages.length < 1 ? (
         <Loading
           isMobile={props.isMobile}
@@ -164,7 +209,7 @@ export function Home(props) {
             className="mySwiper"
             onSwiper={setSwiper}
           >
-            {corouselImages.map((corouselImage) => {
+            {corouselImages.map((corouselImage, index) => {
               return (
                 <SwiperSlide>
                   <div
@@ -180,12 +225,39 @@ export function Home(props) {
                     }}
                   >
                     &nbsp;
+                    {adminLoggedIn ? (
+                      <EditIcon
+                        style={{
+                          color: corouselImage ? "white" : "gray",
+                          right: "30",
+                          bottom: "30",
+                          position: "absolute",
+                          fontSize: "30px",
+                          border: corouselImage
+                            ? "1px solid white"
+                            : "1px solid gray",
+                          borderRadius: "50%",
+                          // height: "50px",
+                          // width: "50px",
+                          padding: "10px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          setImageSection("corousel");
+                          setImageIndex(index);
+                          setTimeout(() => {
+                            handleOpen();
+                          }, 500);
+                        }}
+                      />
+                    ) : null}
                   </div>
                 </SwiperSlide>
               );
             })}
           </Swiper>
         ) : null}
+
         {slideImages.length > 0 ? (
           <div
             style={{
@@ -339,20 +411,19 @@ export function Home(props) {
                   style={{
                     width: "100%",
                     marginBottom: "2%",
-                    backgroundImage: `url(${
-                      JSON.parse(gridImages[0].image1).image
-                    })`,
+                    backgroundImage: `url(${gridImages[0].image})`,
                     borderRadius: "20px",
-                    backgroundSize: "contain",
+                    backgroundSize: "cover",
                     backgroundPosition: "center",
                     height: props.isMobile ? "260px" : "30rem",
                     minHeight: props.isMobile ? "60px" : "20rem",
                     cursor: "pointer",
+                    border: gridImages[0].image ? "" : "1px solid gray",
                   }}
-                  onClick={(e) => {
-                    window.location.href =
-                      "/artDetails/" + gridImages[0]._id["$oid"];
-                  }}
+                  // onClick={(e) => {
+                  //   window.location.href =
+                  //     "/artDetails/" + gridImages[0]._id["$oid"];
+                  // }}
                 >
                   <div
                     style={{
@@ -368,6 +439,34 @@ export function Home(props) {
                       }}
                     >
                       &nbsp;
+                      {adminLoggedIn ? (
+                        <EditIcon
+                          style={{
+                            color: gridImages[0].image ? "white" : "gray",
+                            left: props.isMobile ? "80%" : "85%",
+                            // bottom: "30",
+                            position: "absolute",
+                            fontSize: "30px",
+                            border: gridImages[0].image
+                              ? "1px solid white"
+                              : "1px solid gray",
+                            borderRadius: "50%",
+                            // height: "50px",
+                            // width: "50px",
+                            padding: "10px",
+                            cursor: "pointer",
+                            marginTop: "1%",
+                          }}
+                          onClick={() => {
+                            setImageSection("homeGrid");
+                            setImageIndex(0);
+                            setTimeout(() => {
+                              handleOpen();
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }, 500);
+                          }}
+                        />
+                      ) : null}
                     </div>
                     <div
                       style={{
@@ -423,20 +522,19 @@ export function Home(props) {
                     style={{
                       width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
-                      backgroundImage: `url(${
-                        JSON.parse(gridImages[1].image1).image
-                      })`,
+                      backgroundImage: `url(${gridImages[1].image})`,
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: props.isMobile ? "" : "30rem",
                       minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
+                      border: gridImages[1].image ? "" : "1px solid gray",
                     }}
-                    onClick={(e) => {
-                      window.location.href =
-                        "/artDetails/" + gridImages[1]._id["$oid"];
-                    }}
+                    // onClick={(e) => {
+                    //   window.location.href =
+                    //     "/artDetails/" + gridImages[1]._id["$oid"];
+                    // }}
                   >
                     <div
                       style={{
@@ -452,6 +550,34 @@ export function Home(props) {
                         }}
                       >
                         &nbsp;
+                        {adminLoggedIn ? (
+                          <EditIcon
+                            style={{
+                              color: gridImages[1].image ? "white" : "gray",
+                              left: props.isMobile ? "35%" : "44%",
+                              // bottom: "30",
+                              position: "absolute",
+                              fontSize: "30px",
+                              border: gridImages[1].image
+                                ? "1px solid white"
+                                : "1px solid gray",
+                              borderRadius: "50%",
+                              // height: "50px",
+                              // width: "50px",
+                              padding: "10px",
+                              cursor: "pointer",
+                              marginTop: "1%",
+                            }}
+                            onClick={() => {
+                              setImageSection("homeGrid");
+                              setImageIndex(1);
+                              setTimeout(() => {
+                                handleOpen();
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                              }, 500);
+                            }}
+                          />
+                        ) : null}
                       </div>
                       <div
                         style={{
@@ -495,20 +621,19 @@ export function Home(props) {
                     style={{
                       width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
-                      backgroundImage: `url(${
-                        JSON.parse(gridImages[2].image1).image
-                      })`,
+                      backgroundImage: `url(${gridImages[2].image})`,
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: props.isMobile ? "" : "30rem",
                       minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
+                      border: gridImages[2].image ? "" : "1px solid gray",
                     }}
-                    onClick={(e) => {
-                      window.location.href =
-                        "/artDetails/" + gridImages[2]._id["$oid"];
-                    }}
+                    // onClick={(e) => {
+                    //   window.location.href =
+                    //     "/artDetails/" + gridImages[2]._id["$oid"];
+                    // }}
                   >
                     <div
                       style={{
@@ -524,6 +649,34 @@ export function Home(props) {
                         }}
                       >
                         &nbsp;
+                        {adminLoggedIn ? (
+                          <EditIcon
+                            style={{
+                              color: gridImages[2].image ? "white" : "gray",
+                              left: props.isMobile ? "82%" : "85%",
+                              // bottom: "30",
+                              position: "absolute",
+                              fontSize: "30px",
+                              border: gridImages[2].image
+                                ? "1px solid white"
+                                : "1px solid gray",
+                              borderRadius: "50%",
+                              // height: "50px",
+                              // width: "50px",
+                              padding: "10px",
+                              cursor: "pointer",
+                              marginTop: "1%",
+                            }}
+                            onClick={() => {
+                              setImageSection("homeGrid");
+                              setImageIndex(2);
+                              setTimeout(() => {
+                                handleOpen();
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                              }, 500);
+                            }}
+                          />
+                        ) : null}
                       </div>
                       <div
                         style={{
@@ -568,20 +721,19 @@ export function Home(props) {
                   style={{
                     width: "100%",
                     marginBottom: "2%",
-                    backgroundImage: `url(${
-                      JSON.parse(gridImages[3].image1).image
-                    })`,
+                    backgroundImage: `url(${gridImages[3].image})`,
                     borderRadius: "20px",
-                    backgroundSize: "contain",
+                    backgroundSize: "cover",
                     backgroundPosition: "center",
                     height: props.isMobile ? "260px" : "30rem",
                     minHeight: props.isMobile ? "60px" : "20rem",
                     cursor: "pointer",
+                    border: gridImages[3].image ? "" : "1px solid gray",
                   }}
-                  onClick={(e) => {
-                    window.location.href =
-                      "/artDetails/" + gridImages[3]._id["$oid"];
-                  }}
+                  // onClick={(e) => {
+                  //   window.location.href =
+                  //     "/artDetails/" + gridImages[3]._id["$oid"];
+                  // }}
                 >
                   {/* <img
                 src={`data:image/png;base64,${image}`}
@@ -604,6 +756,34 @@ export function Home(props) {
                       }}
                     >
                       &nbsp;
+                      {adminLoggedIn ? (
+                        <EditIcon
+                          style={{
+                            color: gridImages[3].image ? "white" : "gray",
+                            left: props.isMobile ? "80%" : "85%",
+                            // bottom: "30",
+                            position: "absolute",
+                            fontSize: "30px",
+                            border: gridImages[3].image
+                              ? "1px solid white"
+                              : "1px solid gray",
+                            borderRadius: "50%",
+                            // height: "50px",
+                            // width: "50px",
+                            padding: "10px",
+                            cursor: "pointer",
+                            marginTop: "1%",
+                          }}
+                          onClick={() => {
+                            setImageSection("homeGrid");
+                            setImageIndex(3);
+                            setTimeout(() => {
+                              handleOpen();
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }, 500);
+                          }}
+                        />
+                      ) : null}
                     </div>
                     <div
                       style={{
@@ -656,20 +836,19 @@ export function Home(props) {
                     style={{
                       width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
-                      backgroundImage: `url(${
-                        JSON.parse(gridImages[4].image1).image
-                      })`,
+                      backgroundImage: `url(${gridImages[4].image})`,
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: props.isMobile ? "" : "30rem",
                       minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
+                      border: gridImages[4].image ? "" : "1px solid gray",
                     }}
-                    onClick={(e) => {
-                      window.location.href =
-                        "/artDetails/" + gridImages[4]._id["$oid"];
-                    }}
+                    // onClick={(e) => {
+                    //   window.location.href =
+                    //     "/artDetails/" + gridImages[4]._id["$oid"];
+                    // }}
                   >
                     <div
                       style={{
@@ -685,6 +864,34 @@ export function Home(props) {
                         }}
                       >
                         &nbsp;
+                        {adminLoggedIn ? (
+                          <EditIcon
+                            style={{
+                              color: gridImages[4].image ? "white" : "gray",
+                              left: props.isMobile ? "35%" : "44%",
+                              // bottom: "30",
+                              position: "absolute",
+                              fontSize: "30px",
+                              border: gridImages[4].image
+                                ? "1px solid white"
+                                : "1px solid gray",
+                              borderRadius: "50%",
+                              // height: "50px",
+                              // width: "50px",
+                              padding: "10px",
+                              cursor: "pointer",
+                              marginTop: "1%",
+                            }}
+                            onClick={() => {
+                              setImageSection("homeGrid");
+                              setImageIndex(4);
+                              setTimeout(() => {
+                                handleOpen();
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                              }, 500);
+                            }}
+                          />
+                        ) : null}
                       </div>
                       <div
                         style={{
@@ -728,20 +935,19 @@ export function Home(props) {
                     style={{
                       width: props.isMobile ? "49%" : "49%",
                       marginBottom: "2%",
-                      backgroundImage: `url(${
-                        JSON.parse(gridImages[5].image1).image
-                      })`,
+                      backgroundImage: `url(${gridImages[5].image})`,
                       borderRadius: "20px",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: props.isMobile ? "" : "30rem",
                       minHeight: props.isMobile ? "" : "20rem",
                       cursor: "pointer",
+                      border: gridImages[5].image ? "" : "1px solid gray",
                     }}
-                    onClick={(e) => {
-                      window.location.href =
-                        "/artDetails/" + gridImages[5]._id["$oid"];
-                    }}
+                    // onClick={(e) => {
+                    //   window.location.href =
+                    //     "/artDetails/" + gridImages[5]._id["$oid"];
+                    // }}
                   >
                     <div
                       style={{
@@ -757,6 +963,34 @@ export function Home(props) {
                         }}
                       >
                         &nbsp;
+                        {adminLoggedIn ? (
+                          <EditIcon
+                            style={{
+                              color: gridImages[5].image ? "white" : "gray",
+                              left: props.isMobile ? "82%" : "85%",
+                              // bottom: "30",
+                              position: "absolute",
+                              fontSize: "30px",
+                              border: gridImages[5].image
+                                ? "1px solid white"
+                                : "1px solid gray",
+                              borderRadius: "50%",
+                              // height: "50px",
+                              // width: "50px",
+                              padding: "10px",
+                              cursor: "pointer",
+                              marginTop: "1%",
+                            }}
+                            onClick={() => {
+                              setImageSection("homeGrid");
+                              setImageIndex(5);
+                              setTimeout(() => {
+                                handleOpen();
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                              }, 500);
+                            }}
+                          />
+                        ) : null}
                       </div>
                       <div
                         style={{
