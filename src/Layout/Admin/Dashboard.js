@@ -21,6 +21,8 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { apiRequest } from "../../Util/axiosInstance";
 import Loading from "../../Component/Loading";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
 export function Dashboard(props) {
   var imageList = [];
   //   alert(typeof localStorage.getItem("loggedIn"));
@@ -138,9 +140,9 @@ export function Dashboard(props) {
       }
       setHasMore(result[0]["hasMore"]);
       last_id = result[result.length - 1]["_id"]["$oid"];
-      console.log(last_id);
+      // console.log(last_id);
       setLastId(last_id);
-      console.log(tempImages);
+      // console.log(tempImages);
       setImages(tempImages);
       setInitialImages(tempImages);
       //   setImage(JSON.parse(result[0].image1).image);
@@ -187,6 +189,31 @@ export function Dashboard(props) {
     fetchData();
   }, []);
 
+  async function deleteArtwork(id) {
+    if (window.confirm("Do you want to permanently delete the artwork?")) {
+      setShowRating(false);
+      try {
+        const result = await apiRequest("GET", "/deleteArtwork/" + id); // Replace with your API endpoint
+        alert("Artwork Deleted.");
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to delete artwork:", error);
+      } finally {
+        setLoading(false);
+      }
+
+      var imgs = [];
+      for (var img in initialImages) {
+        if (initialImages[img]["_id"]["$oid"] != id) {
+          imgs.push(initialImages[img]);
+        }
+      }
+      // console.log(imgs);
+      setInitialImages(imgs);
+      setImages(imgs);
+      setShowRating(true);
+    }
+  }
   return (
     <div>
       {/* <ToolBar /> */}
@@ -435,68 +462,84 @@ export function Dashboard(props) {
                           JSON.parse(item.image1).image
                         })`,
                         backgroundPosition: "center",
-                        backgroundSize: "contain",
+                        backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
                         marginLeft: props.isMobile ? "1%" : "",
                       }}
                     >
                       &nbsp;
                     </div>
+                  </Link>
+                  <div
+                    style={{
+                      marginLeft: "2%",
+                      marginTop: "3%",
+                      marginBottom: "3%",
+                      textTransform: "capitalize",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: props.isMobile ? "center" : "start",
+                    }}
+                  >
+                    <div>{item.name}</div>
+                    <div>
+                      {showRating ? (
+                        <Stack spacing={1}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={parseFloat(item.rating)}
+                            precision={0.5}
+                            readOnly
+                          />
+                        </Stack>
+                      ) : null}
+                    </div>
+
                     <div
                       style={{
-                        marginLeft: "2%",
-                        marginTop: "3%",
-                        marginBottom: "3%",
-                        textTransform: "capitalize",
                         display: "flex",
-                        flexDirection: "column",
-                        alignItems: props.isMobile ? "center" : "start",
+                        flexDirection: "row",
+                        width: "100%",
+                        justifyContent: "space-between",
                       }}
                     >
-                      <div>{item.name}</div>
+                      {item.active ? (
+                        <div
+                          style={{
+                            color: "rgb(31,165,141,1)",
+                            height: "20px",
+                            borderRadius: "10px",
+                            border: "1px solid rgb(31,165,141,1)",
+                            width: "60px",
+                            paddingLeft: "5%",
+                          }}
+                        >
+                          Active
+                        </div>
+                      ) : (
+                        <div
+                          style={{
+                            color: "red",
+                            height: "20px",
+                            borderRadius: "10px",
+                            border: "1px solid red",
+                            width: "80px",
+                            paddingLeft: "5%",
+                          }}
+                        >
+                          Inactive
+                        </div>
+                      )}
                       <div>
-                        {showRating ? (
-                          <Stack spacing={1}>
-                            <Rating
-                              name="half-rating-read"
-                              defaultValue={parseFloat(item.rating)}
-                              precision={0.5}
-                              readOnly
-                            />
-                          </Stack>
-                        ) : null}
-                      </div>
-                      <div>
-                        {item.active ? (
-                          <div
-                            style={{
-                              color: "rgb(31,165,141,1)",
-                              height: "20px",
-                              borderRadius: "10px",
-                              border: "1px solid rgb(31,165,141,1)",
-                              width: "60px",
-                              paddingLeft: "5%",
-                            }}
-                          >
-                            Active
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              color: "red",
-                              height: "20px",
-                              borderRadius: "10px",
-                              border: "1px solid red",
-                              width: "80px",
-                              paddingLeft: "5%",
-                            }}
-                          >
-                            Inactive
-                          </div>
-                        )}
+                        <DeleteOutlineIcon
+                          style={{ color: "red" }}
+                          onClick={() => {
+                            deleteArtwork(item._id["$oid"]);
+                          }}
+                        />
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               ))}
             </div>
