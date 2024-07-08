@@ -131,7 +131,7 @@ export function Home(props) {
         ); // Replace with your API endpoint
         // console.log(metricsResult);
 
-        const result = await apiRequest("GET", "/corouselDocuments"); // Replace with your API endpoint
+        const result = await apiRequest("GET", "/corouselDocuments1"); // Replace with your API endpoint
         // console.log(result);
         // console.log(result[0].)
         var corImgs = [];
@@ -148,8 +148,6 @@ export function Home(props) {
           }
           //   console.log();
         }
-        // console.log(typeof result);
-        // console.log(corImgs);
         setSlideIndices(slInd);
         setCorouselImages(corImgs);
         setSlideImages(slImgs);
@@ -157,6 +155,27 @@ export function Home(props) {
         const result1 = await apiRequest("GET", "/homeGridDocuments"); // Replace with your API endpoint
         console.log(result1);
         setGridImages(result1);
+
+        const result2 = await apiRequest("GET", "/corouselDocuments"); // Replace with your API endpoint
+        // console.log(result);
+        // console.log(result[0].)
+        var corImgs2 = [];
+        var slImgs2 = [];
+        var slInd2 = [];
+        for (var image in result2) {
+          if (image < 5) {
+            corImgs2.push(result2[image].image);
+            slImgs2.push({
+              name: result2[image].name,
+              size: result2[image].height + '" x ' + result2[image].width + '"',
+            });
+            slInd2.push(image);
+          }
+          //   console.log();
+        }
+        setSlideIndices(slInd2);
+        setCorouselImages(corImgs2);
+        setSlideImages(slImgs2);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {
