@@ -117,6 +117,33 @@ export function Home(props) {
 
   useEffect(() => {
     const fetchData = async () => {
+      // var corouselImagesCache = sessionStorage.getItem("corouselImages");
+      // var gridImagesCache = sessionStorage.getItem("gridImages");
+      // if (corouselImagesCache) {
+      //   var result = JSON.parse(corouselImagesCache);
+      //   var corImgs = [];
+      //   var slImgs = [];
+      //   var slInd = [];
+      //   for (var image in result) {
+      //     if (image < 5) {
+      //       corImgs.push(result[image].image);
+      //       slImgs.push({
+      //         name: result[image].name,
+      //         size: result[image].height + '" x ' + result[image].width + '"',
+      //       });
+      //       slInd.push(image);
+      //     }
+      //     //   console.log();
+      //   }
+      //   setSlideIndices(slInd);
+      //   setCorouselImages(corImgs);
+      //   setSlideImages(slImgs);
+
+      //   var result1 = JSON.parse(gridImagesCache); // Replace with your API endpoint
+      //   // console.log(result1);
+      //   setGridImages(result1);
+      // } else {
+      // alert("here");
       try {
         var user = "user";
         if (sessionStorage.loggedIn == "true") {
@@ -153,8 +180,10 @@ export function Home(props) {
         setSlideImages(slImgs);
 
         const result1 = await apiRequest("GET", "/homeGridDocuments"); // Replace with your API endpoint
-        console.log(result1);
+        // console.log(result1);
         setGridImages(result1);
+        // console.log("setting gridImages");
+        sessionStorage.setItem("gridImages", JSON.stringify(result1));
 
         const result2 = await apiRequest("GET", "/corouselDocuments"); // Replace with your API endpoint
         // console.log(result);
@@ -176,12 +205,15 @@ export function Home(props) {
         setSlideIndices(slInd2);
         setCorouselImages(corImgs2);
         setSlideImages(slImgs2);
+        // console.log("setting corousel Images");
+        // sessionStorage.setItem("corouselImages", JSON.stringify(result2));
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {
         // setLoading(false);
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
       }
+      // }
     };
 
     fetchData();
@@ -442,7 +474,7 @@ export function Home(props) {
                   onClick={(e) => {
                     // console.log(gridImages[0]);
                     if (gridImages[0].artworkUrl && !adminLoggedIn) {
-                      window.open(gridImages[0].artworkUrl);
+                      window.open(gridImages[0].artworkUrl, "_self");
                     }
                   }}
                 >
@@ -554,7 +586,7 @@ export function Home(props) {
                     }}
                     onClick={(e) => {
                       if (gridImages[1].artworkUrl && !adminLoggedIn) {
-                        window.open(gridImages[1].artworkUrl);
+                        window.open(gridImages[1].artworkUrl, "_self");
                       }
                     }}
                   >
@@ -654,7 +686,7 @@ export function Home(props) {
                     }}
                     onClick={(e) => {
                       if (gridImages[2].artworkUrl && !adminLoggedIn) {
-                        window.open(gridImages[2].artworkUrl);
+                        window.open(gridImages[2].artworkUrl, "_self");
                       }
                     }}
                   >
@@ -755,7 +787,7 @@ export function Home(props) {
                   }}
                   onClick={(e) => {
                     if (gridImages[3].artworkUrl && !adminLoggedIn) {
-                      window.open(gridImages[3].artworkUrl);
+                      window.open(gridImages[3].artworkUrl, "_self");
                     }
                   }}
                 >
@@ -871,7 +903,7 @@ export function Home(props) {
                     }}
                     onClick={(e) => {
                       if (gridImages[4].artworkUrl && !adminLoggedIn) {
-                        window.open(gridImages[4].artworkUrl);
+                        window.open(gridImages[4].artworkUrl, "_self");
                       }
                     }}
                   >
@@ -971,7 +1003,7 @@ export function Home(props) {
                     }}
                     onClick={(e) => {
                       if (gridImages[5].artworkUrl && !adminLoggedIn) {
-                        window.open(gridImages[5].artworkUrl);
+                        window.open(gridImages[5].artworkUrl, "_self");
                       }
                     }}
                   >
