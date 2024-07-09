@@ -35,6 +35,7 @@ export function UploadHomeArt(props) {
   const [artworkName, setArtworkName] = useState("");
   const [height, setHeight] = useState();
   const [width, setWidth] = useState();
+  const [artworkUrl, setArtworkUrl] = useState();
 
   function alerter(field) {
     if (field == "Main Image") {
@@ -120,6 +121,7 @@ export function UploadHomeArt(props) {
     data.name = artworkName;
     data.height = height;
     data.width = width;
+    data.artworkUrl = artworkUrl;
 
     try {
       setUploading(true);
@@ -145,14 +147,15 @@ export function UploadHomeArt(props) {
           "/homeDocument/" + props.imageSection + "/" + props.imageIndex
         ); // Replace with your API endpoint
 
-        console.log("edit home image result");
-        console.log(result);
+        // console.log("edit home image result");
+        // console.log(result);
         result = result[0];
-        console.log(result);
-        console.log(result.name);
+        // console.log(result);
+        // console.log(result.name);
         setArtworkName(result.name ? result.name : "");
         setHeight(result.height ? parseFloat(result.height) : 0);
         setWidth(result.width ? parseFloat(result.width) : 0);
+        setArtworkUrl(result.artworkUrl ? result.artworkUrl : "");
         setImage1(result.image);
 
         setUpdateArtwork(true);
@@ -377,6 +380,21 @@ export function UploadHomeArt(props) {
 
                     <br />
                     <br />
+                    {props.imageSection == "homeGrid" ? (
+                      <FormControl required fullWidth>
+                        <TextField
+                          name="Name"
+                          value={artworkUrl}
+                          onInput={(e) => {
+                            setArtworkUrl(e.target.value);
+                          }}
+                          label="Artwork URL"
+                          type="text"
+                        />
+                        <br />
+                        <br />
+                      </FormControl>
+                    ) : null}
 
                     {!updateArtwork ? (
                       <FormControl required fullWidth>

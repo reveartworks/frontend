@@ -439,10 +439,12 @@ export function Home(props) {
                     cursor: "pointer",
                     border: gridImages[0].image ? "" : "1px solid gray",
                   }}
-                  // onClick={(e) => {
-                  //   window.location.href =
-                  //     "/artDetails/" + gridImages[0]._id["$oid"];
-                  // }}
+                  onClick={(e) => {
+                    // console.log(gridImages[0]);
+                    if (gridImages[0].artworkUrl && !adminLoggedIn) {
+                      window.open(gridImages[0].artworkUrl);
+                    }
+                  }}
                 >
                   <div
                     style={{
@@ -550,10 +552,11 @@ export function Home(props) {
                       cursor: "pointer",
                       border: gridImages[1].image ? "" : "1px solid gray",
                     }}
-                    // onClick={(e) => {
-                    //   window.location.href =
-                    //     "/artDetails/" + gridImages[1]._id["$oid"];
-                    // }}
+                    onClick={(e) => {
+                      if (gridImages[1].artworkUrl && !adminLoggedIn) {
+                        window.open(gridImages[1].artworkUrl);
+                      }
+                    }}
                   >
                     <div
                       style={{
@@ -649,10 +652,11 @@ export function Home(props) {
                       cursor: "pointer",
                       border: gridImages[2].image ? "" : "1px solid gray",
                     }}
-                    // onClick={(e) => {
-                    //   window.location.href =
-                    //     "/artDetails/" + gridImages[2]._id["$oid"];
-                    // }}
+                    onClick={(e) => {
+                      if (gridImages[2].artworkUrl && !adminLoggedIn) {
+                        window.open(gridImages[2].artworkUrl);
+                      }
+                    }}
                   >
                     <div
                       style={{
@@ -749,10 +753,11 @@ export function Home(props) {
                     cursor: "pointer",
                     border: gridImages[3].image ? "" : "1px solid gray",
                   }}
-                  // onClick={(e) => {
-                  //   window.location.href =
-                  //     "/artDetails/" + gridImages[3]._id["$oid"];
-                  // }}
+                  onClick={(e) => {
+                    if (gridImages[3].artworkUrl && !adminLoggedIn) {
+                      window.open(gridImages[3].artworkUrl);
+                    }
+                  }}
                 >
                   {/* <img
                 src={`data:image/png;base64,${image}`}
@@ -864,10 +869,11 @@ export function Home(props) {
                       cursor: "pointer",
                       border: gridImages[4].image ? "" : "1px solid gray",
                     }}
-                    // onClick={(e) => {
-                    //   window.location.href =
-                    //     "/artDetails/" + gridImages[4]._id["$oid"];
-                    // }}
+                    onClick={(e) => {
+                      if (gridImages[4].artworkUrl && !adminLoggedIn) {
+                        window.open(gridImages[4].artworkUrl);
+                      }
+                    }}
                   >
                     <div
                       style={{
@@ -963,10 +969,11 @@ export function Home(props) {
                       cursor: "pointer",
                       border: gridImages[5].image ? "" : "1px solid gray",
                     }}
-                    // onClick={(e) => {
-                    //   window.location.href =
-                    //     "/artDetails/" + gridImages[5]._id["$oid"];
-                    // }}
+                    onClick={(e) => {
+                      if (gridImages[5].artworkUrl && !adminLoggedIn) {
+                        window.open(gridImages[5].artworkUrl);
+                      }
+                    }}
                   >
                     <div
                       style={{
