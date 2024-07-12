@@ -1167,13 +1167,15 @@ export function Home(props) {
                 textAlign: "center",
               }}
             >
-              <b>Meet Anwar Khan!</b> Anwar is a self-taught visionary artist,
-              weaving tales of emotion and imagination through his abstract
-              paintings. Each brushstroke captures the essence of his inner
-              world, creating a profound connection with the observer. In the
-              quiet conversation between Anwar and his canvas, a captivating
-              universe emerges, inviting viewers to experience the beauty of his
-              unique perspective.
+              <b style={{ fontSize: props.isMobile ? "21px" : "36px" }}>
+                Meet Anwar Khan!
+              </b>{" "}
+              Anwar is a self-taught visionary artist, weaving tales of emotion
+              and imagination through his abstract paintings. Each brushstroke
+              captures the essence of his inner world, creating a profound
+              connection with the observer. In the quiet conversation between
+              Anwar and his canvas, a captivating universe emerges, inviting
+              viewers to experience the beauty of his unique perspective.
             </p>
           </div>
         </Container>
