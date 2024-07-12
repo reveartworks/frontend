@@ -229,7 +229,7 @@ export function Home(props) {
       //   sessionStorage.getItem("autoPlaySlideIndex")
       // );
       try {
-        if (startScroll) {
+        if (startScroll && !adminLoggedIn) {
           if (autoPlaySlideIndex < 4) {
             document
               .getElementById("slideIndex" + (autoPlaySlideIndex + 1))
@@ -248,7 +248,7 @@ export function Home(props) {
         console.log(e);
       }
     }, 5000);
-  }, [autoPlaySlideIndex, startScroll]);
+  }, [autoPlaySlideIndex, startScroll, adminLoggedIn]);
 
   return (
     <div>
