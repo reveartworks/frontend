@@ -105,9 +105,8 @@ export function Footer(props) {
               Let's Talk
             </p>
             <p className="text17" style={{ marginTop: "-5%" }}>
-              I would love to hear what's on your mind. Maybe I can create
-              something which is not in my gallery and bring some happiness in
-              you.
+              We’d love to hear your thoughts. Perhaps we can create something
+              unique just for you and bring some joy to your space.
             </p>
             <Button
               className="contact"
@@ -120,7 +119,7 @@ export function Footer(props) {
               }}
               onClick={handleFooterContactOpen}
             >
-              Contact Me
+              Contact Us
             </Button>
           </div>
           <div style={{ width: "40%", alignContent: "end", marginLeft: "20%" }}>

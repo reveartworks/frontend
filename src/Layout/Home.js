@@ -112,6 +112,7 @@ export function Home(props) {
   const [slideImages, setSlideImages] = new useState([]);
   const [slideIndices, setSlideIndices] = new useState([]);
   const [corouselImages, setCorouselImages] = useState([]);
+  const [startScroll, setStartScroll] = useState(false);
 
   const [gridImages, setGridImages] = useState([]);
 
@@ -205,6 +206,7 @@ export function Home(props) {
         setSlideIndices(slInd2);
         setCorouselImages(corImgs2);
         setSlideImages(slImgs2);
+        setStartScroll(true);
         // console.log("setting corousel Images");
         // sessionStorage.setItem("corouselImages", JSON.stringify(result2));
       } catch (error) {
@@ -218,8 +220,36 @@ export function Home(props) {
 
     fetchData();
   }, [image]);
+  const [swiper, setSwiper] = useState();
+  var autoPlaySlideIndex = 0;
+  // sessionStorage.setItem("autoPlaySlideIndex", 0);
+  useEffect(() => {
+    setInterval(() => {
+      // var autoPlaySlideIndex = parseInt(
+      //   sessionStorage.getItem("autoPlaySlideIndex")
+      // );
+      try {
+        if (startScroll) {
+          if (autoPlaySlideIndex < 4) {
+            document
+              .getElementById("slideIndex" + (autoPlaySlideIndex + 1))
+              .click();
+            autoPlaySlideIndex += 1;
+            // sessionStorage.setItem("autoPlaySlideIndex", autoPlaySlideIndex);
+            // setActiveSlide(activeSlide + 1);
+          } else {
+            document.getElementById("slideIndex" + 0).click();
+            autoPlaySlideIndex = 0;
+            // sessionStorage.setItem("autoPlaySlideIndex", autoPlaySlideIndex);
+            // setActiveSlide(0);
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }, 5000);
+  }, [autoPlaySlideIndex, startScroll]);
 
-  const [swiper, setSwiper] = useState(null);
   return (
     <div>
       {/* <ToolBar /> */}
@@ -253,12 +283,17 @@ export function Home(props) {
           <Swiper
             onSlideChange={(event) => {
               //   console.log(event.activeIndex);
+              // alert("changed");
+              // console.log(event.activeIndex);
+              // sessionStorage.setItem("autoPlaySlideIndex", event.activeIndex);
               setActiveSlide(event.activeIndex);
             }}
             //   pagination={true}
             modules={[Pagination]}
             className="mySwiper"
             onSwiper={setSwiper}
+            // loop={true}
+            // autoplay={3000}
           >
             {corouselImages.map((corouselImage, index) => {
               return (
@@ -269,7 +304,7 @@ export function Home(props) {
                       width: "100%",
                       backgroundImage: `url(${corouselImage})`,
                       //   backgroundColor: "#ccccc",
-                      backgroundSize: "contain",
+                      backgroundSize: "cover",
                       backgroundPosition: "center",
                       // backgroundRepeat: "",
                       height: props.isMobile ? "30vh" : "100vh",
@@ -314,7 +349,7 @@ export function Home(props) {
             style={{
               zIndex: "5",
               marginTop: props.isMobileLandscape
-                ? "-30%"
+                ? "-25%"
                 : props.isMobile
                 ? // ? "-37%"
                   "-15%"
@@ -373,6 +408,7 @@ export function Home(props) {
                   {/* <p> */}
                   {slideIndices.map((item) => (
                     <div
+                      id={"slideIndex" + item}
                       style={{
                         width: "5px",
                         border: "2px solid white",
@@ -434,10 +470,9 @@ export function Home(props) {
               paddingTop: props.isMobile ? "2%" : "",
             }}
           >
-            Anwar is a canvas storyteller, capturing the essence of his thoughts
-            and feelings, leaving an incredlible mark on the observer's soul. In
-            the silent dialogue between Anwar and his canvas, a world unfolds,
-            inviting others to share in the beauty of their unique perspective.
+            In my gallery of strokes, you'll find yourself transported into
+            contemplative spaces, where the interplay of light and shadow, color
+            and form, invites you to interpret and engage.
           </p>
           {/* </Paper> */}
           {gridImages.length < 1 ? (
@@ -1132,9 +1167,13 @@ export function Home(props) {
                 textAlign: "center",
               }}
             >
-              In my gallery of strokes, you'll find yourself transported into
-              contemplative spaces, where the interplay of light and shadow,
-              color and form, invites you to interpret and engage.
+              Meet Anwar Khan! Anwar is a self-taught visionary artist, weaving
+              tales of emotion and imagination through his abstract paintings.
+              Each brushstroke captures the essence of his inner world, creating
+              a profound connection with the observer. In the quiet conversation
+              between Anwar and his canvas, a captivating universe emerges,
+              inviting viewers to experience the beauty of his unique
+              perspective.
             </p>
           </div>
         </Container>
