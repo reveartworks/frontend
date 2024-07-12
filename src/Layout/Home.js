@@ -470,7 +470,7 @@ export function Home(props) {
               paddingTop: props.isMobile ? "2%" : "",
             }}
           >
-            In my gallery of strokes, you'll find yourself transported into
+            In our gallery of strokes, you'll find yourself transported into
             contemplative spaces, where the interplay of light and shadow, color
             and form, invites you to interpret and engage.
           </p>
