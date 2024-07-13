@@ -1170,8 +1170,8 @@ export function Home(props) {
               <b style={{ fontSize: props.isMobile ? "21px" : "36px" }}>
                 Meet Anwar Khan!
               </b>{" "}
-              Anwar is a self-taught visionary artist, weaving tales of emotion
-              and imagination through his abstract paintings. Each brushstroke
+              Anwar is a visionary artist, weaving tales of emotion and
+              imagination through his abstract paintings. Each brushstroke
               captures the essence of his inner world, creating a profound
               connection with the observer. In the quiet conversation between
               Anwar and his canvas, a captivating universe emerges, inviting
