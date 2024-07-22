@@ -147,6 +147,15 @@ export function Header(props) {
                   Admin Login
                 </MenuItem>
               ) : null} */}
+              {!userLoggedIn ? (
+                <MenuItem
+                  onClick={(e) => {
+                    document.getElementById("footerContactButton").click();
+                  }}
+                >
+                  Contact Us
+                </MenuItem>
+              ) : null}
               {userLoggedIn ? (
                 <MenuItem
                   onClick={(e) => {

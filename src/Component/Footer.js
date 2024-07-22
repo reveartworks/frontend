@@ -111,6 +111,7 @@ export function Footer(props) {
             <Button
               className="contact"
               variant="outlined"
+              id="footerContactButton"
               style={{
                 color: "black",
                 border: "1px solid white",
