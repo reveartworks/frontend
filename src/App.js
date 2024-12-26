@@ -8,10 +8,12 @@ import { UploadArt } from "./Layout/Admin/UploadArt";
 import { ViewArt } from "./Layout/ViewArt";
 import { Login } from "./Layout/Admin/Login";
 import { Dashboard } from "./Layout/Admin/Dashboard";
+import { PurchaseEnquiries } from "./Layout/Admin/PurchaseEnquiries";
 import { ImageUploader } from "./Util/ImageUploader";
 import useWindowSize from "./Util/useWindowSize";
 import { useState } from "react";
 import { Analytics } from "./Layout/Admin/Analytics";
+import { ContactEnquiries } from "./Layout/Admin/ContactEnquiries";
 function App() {
   const { width } = useWindowSize();
   const [isMobile, setIsMobile] = useState(width <= 500 ? true : false);
@@ -102,6 +104,24 @@ function App() {
               />
             }
             path="/analytics"
+          />
+          <Route
+            element={
+              <PurchaseEnquiries
+                isMobile={isMobile}
+                isMobileLandscape={isMobileLandscape}
+              />
+            }
+            path="/purchaseEnquiries"
+          />
+          <Route
+            element={
+              <ContactEnquiries
+                isMobile={isMobile}
+                isMobileLandscape={isMobileLandscape}
+              />
+            }
+            path="/contactEnquiries"
           />
         </Routes>
       </Router>

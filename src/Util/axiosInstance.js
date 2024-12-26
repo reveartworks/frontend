@@ -4,7 +4,7 @@ import axios from "axios";
 
 // Create an instance of axios with default settings
 const axiosInstance = axios.create({
-  // baseURL: "http://0.0.0.0:5001", // Replace with your API's base URL
+  // baseURL: "http://0.0.0.0:5002", // Replace with your API's base URL
   baseURL: "https://api.reveartworks.com", // Replace with your API's base URL
   timeout: 30000, // Timeout after 10 seconds
   headers: {

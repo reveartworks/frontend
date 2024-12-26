@@ -168,6 +168,24 @@ export function Header(props) {
               {userLoggedIn ? (
                 <MenuItem
                   onClick={(e) => {
+                    window.location.href = "/purchaseEnquiries";
+                  }}
+                >
+                  Purchase Enquiries
+                </MenuItem>
+              ) : null}
+              {userLoggedIn ? (
+                <MenuItem
+                  onClick={(e) => {
+                    window.location.href = "/contactEnquiries";
+                  }}
+                >
+                  Contact Enquiries
+                </MenuItem>
+              ) : null}
+              {userLoggedIn ? (
+                <MenuItem
+                  onClick={(e) => {
                     window.location.href = "/analytics";
                   }}
                 >
