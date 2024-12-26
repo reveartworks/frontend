@@ -122,7 +122,7 @@ export default function PurchaseDataTable(props) {
             <StyledTableCell align="right">Email</StyledTableCell>
             <StyledTableCell align="right">Art Name</StyledTableCell>
             <StyledTableCell align="right">Art Size</StyledTableCell>
-            <StyledTableCell align="right">Comments</StyledTableCell>
+            <StyledTableCell align="left">Comments</StyledTableCell>
             <StyledTableCell align="right">Date</StyledTableCell>
             <StyledTableCell align="right">Seen</StyledTableCell>
             <StyledTableCell align="right">Contacted</StyledTableCell>
@@ -142,7 +142,7 @@ export default function PurchaseDataTable(props) {
                 </Link>
               </StyledTableCell>
               <StyledTableCell align="right">{row.artSize}</StyledTableCell>
-              <StyledTableCell align="right">{row.comments}</StyledTableCell>
+              <StyledTableCell align="left">{row.comments}</StyledTableCell>
               <StyledTableCell align="right">{row.date}</StyledTableCell>
               <StyledTableCell align="right">
                 {" "}

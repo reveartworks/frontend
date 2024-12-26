@@ -120,7 +120,7 @@ export default function ContactDataTable(props) {
           <TableRow>
             <StyledTableCell>Name</StyledTableCell>
             <StyledTableCell align="right">Email</StyledTableCell>
-            <StyledTableCell align="right">Comments</StyledTableCell>
+            <StyledTableCell align="left">Comments</StyledTableCell>
             <StyledTableCell align="right">Date</StyledTableCell>
             <StyledTableCell align="right">Seen</StyledTableCell>
             <StyledTableCell align="right">Contacted</StyledTableCell>
@@ -134,7 +134,7 @@ export default function ContactDataTable(props) {
                 {row.name}
               </StyledTableCell>
               <StyledTableCell align="right">{row.email}</StyledTableCell>
-              <StyledTableCell align="right">{row.comments}</StyledTableCell>
+              <StyledTableCell align="left">{row.comments}</StyledTableCell>
               <StyledTableCell align="right">{row.date}</StyledTableCell>
               <StyledTableCell align="right">
                 {" "}
