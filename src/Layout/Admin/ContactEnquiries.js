@@ -117,6 +117,7 @@ export function ContactEnquiries(props) {
             <div
               className="center"
               style={{
+                marginTop: "10%",
                 marginBottom: "2%",
                 display: gotPurchaseEnquiries ? "none" : "block",
                 cursor: "pointer",
