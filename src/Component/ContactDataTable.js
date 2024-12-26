@@ -10,6 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { apiRequest } from "../Util/axiosInstance";
 import { Outlet, Link } from "react-router-dom";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -88,6 +89,30 @@ export default function ContactDataTable(props) {
     });
   }
 
+  async function deleteContactEnqiry(enquiryId) {
+    try {
+      var del = window.confirm("Do you want to delete this enquiry?");
+      if (del) {
+        try {
+          const result = await apiRequest("POST", "/deleteEnquiry", {
+            type: "contact",
+            enquiryId: enquiryId,
+          });
+          var tempRows = [];
+          rows.forEach((element) => {
+            if (element.id != enquiryId) {
+              tempRows.push(element);
+            }
+          });
+          setRows(tempRows);
+        } catch (error) {
+          alert("Failed to delete purchase enquiry.");
+          console.log(error);
+        }
+      }
+    } catch (e) {}
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -99,6 +124,7 @@ export default function ContactDataTable(props) {
             <StyledTableCell align="right">Date</StyledTableCell>
             <StyledTableCell align="right">Seen</StyledTableCell>
             <StyledTableCell align="right">Contacted</StyledTableCell>
+            <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -126,6 +152,14 @@ export default function ContactDataTable(props) {
                   onChange={(e) => handleContacted(row)}
                   style={{ accentColor: "rgb(31, 165, 141)" }}
                 ></input>
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                <DeleteOutlineIcon
+                  style={{ color: "red" }}
+                  onClick={() => {
+                    deleteContactEnqiry(row.id);
+                  }}
+                />
               </StyledTableCell>
             </StyledTableRow>
           ))}
